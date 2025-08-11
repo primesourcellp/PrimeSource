@@ -12,7 +12,7 @@ export default function Footer() {
           </div>
           <div>
             <h5 className="font-bold mb-2 text-[#3A9188]">Contact Us</h5>
-            <p className="text-s mb-1">Door No xxxxxx va nager, Surandai  Road, Keezhapavur, Tenkasi Tk, Tenkasi District - 627808.</p>
+            <p className="text-s mb-1">10/91/K6,Nehru Nager,Surandai  Road, Pavoorchatram, Kulasekarapatti, Tenkasi Tk, Tenkasi District - 627808.</p>
             <p className="text-s mb-1">recruit@primesourcellp.com</p>
             <p className="text-s">81899 91250</p>
           </div>
@@ -22,7 +22,7 @@ export default function Footer() {
               <li className="mb-2"><a href="/Home" className="hover:text-[#3A9188]">Home</a></li>
                <li className="mb-2"><a href="/About" className="hover:text-[#3A9188]">About Us</a></li>
               <li className="mb-2"><a href="/Services" className="hover:text-[#3A9188]">Our Services</a></li>
-              <li className="mb-2"><a href="/careers" className="hover:text-[#3A9188]">Careers</a></li>
+              <li className="mb-2"><a href="/Career" className="hover:text-[#3A9188]">Career</a></li>
               <li><a href="/Contact" className="hover:text-[#3A9188]">Contact Us</a></li>
             </ul>
           </div>

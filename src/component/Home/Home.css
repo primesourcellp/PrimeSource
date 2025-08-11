@@ -1,0 +1,24 @@
+
+        .highlighted-logo {
+          position: relative;
+          z-index: 10;
+        }
+        .highlighted-logo::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50%;
+          height: 3px;
+          background: #3A9188;
+          border-radius: 2px;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      

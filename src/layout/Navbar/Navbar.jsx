@@ -6,43 +6,51 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  const textColorStyle = scrolled
-    ? { color: "rgba(0, 0, 0, 0.9)" }
-    : { color: "white" };
+  // Text color for mobile & desktop
+  const textColorStyle = isMobile
+    ? { color: scrolled ? "black" : "white" } // mobile
+    : { color: scrolled ? "rgba(0,0,0,0.9)" : "white" }; // desktop
 
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
-        ${scrolled ? "md:bg-transparent" : "md:bg-[#062925]"} 
-        bg-[#062925] md:bg-opacity-100 md:backdrop-blur`}
+        ${scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"}`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+        {/* Logo */}
         <Link to="/Home" className="flex items-center gap-2" style={textColorStyle}>
           <img src={logo} alt="PrimeSource Logo" className="w-30 mb-0" />
         </Link>
 
-        {/* Contact info: visible on md and larger screens */}
-        <div className="hidden md:flex items-center space-x-45 text-sm" style={textColorStyle}>
-          <a href="tel:8189991250" className="flex items-center space-x-1 hover:underline">
+        {/* Desktop contact */}
+        <div className="hidden md:flex items-center space-x-15 text-sm" style={textColorStyle}>
+          <a href="tel:8189991250" className="flex items-center gap-1 hover:underline">
             <FaPhoneAlt />
             <span>818-999-1250</span>
           </a>
-          <a href="mailto:recruit@primesourcellp.com" className="flex items-center space-x-1 hover:underline">
+          <a href="mailto:recruit@primesourcellp.com" className="flex items-center gap-1 hover:underline">
             <FaEnvelope />
             <span>recruit@primesourcellp.com</span>
           </a>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation"
@@ -62,12 +70,12 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Mobile & Desktop Menu */}
+        {/* Menu */}
         <div
-          className={`space-x-5 md:flex ${open ? "block" : "hidden"} 
-            absolute md:static top-16 left-0 w-full 
-            bg-[#044A42] md:${scrolled ? "bg-transparent" : "bg-[#062925]"} 
-            md:w-auto p-4 md:p-0 z-10`}
+          className={`md:flex ${open ? "block" : "hidden"} 
+            absolute md:static top-16 space-x-8 left-0 w-full 
+            ${scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"} 
+            md:bg-transparent md:w-auto p-4 md:p-0 z-10`}
         >
           {["Home", "About", "Services", "Career", "Contact"].map((item) => (
             <Link
