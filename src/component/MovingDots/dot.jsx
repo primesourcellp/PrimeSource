@@ -22,7 +22,7 @@ const JobDriveBanner = () => {
         particleCount = 30;
         connectionDistance = 70;
       } else {
-        particleCount = 40;
+        particleCount = 70;
         connectionDistance = 100;
       }
 
@@ -57,7 +57,7 @@ const JobDriveBanner = () => {
         if (dist < 100) {
           const forceDirectionX = dx / dist;
           const forceDirectionY = dy / dist;
-          const force = (100 - dist) / 100 * 2;
+          const force = (100 - dist) / 100 * 8;
           this.x += forceDirectionX * force;
           this.y += forceDirectionY * force;
         }

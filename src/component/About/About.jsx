@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-
-// Import your images from the assets folder.
-// Ensure these paths are correct relative to where this component is used.
-// For demonstration, these are kept as is, assuming a working asset setup.
 import companyIntroImg from '../../assets/four.png';
 import ethicsImg from '../../assets/one.png';
 import screeningProcessImg from '../../assets/three.png';
@@ -14,6 +10,7 @@ const CollapsibleContent = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+  
     <div className="mb-4">
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -46,12 +43,12 @@ const CollapsibleContent = ({ title, children }) => {
 // Enhanced "What We Do" component
 const WhatWeDoList = () => {
   const items = [
-    "Documentation",
-    "Assignment",
-    "Orientation",
-    "Welcome package",
-    "IT setup",
-    "Training plan"
+    "Web Development",
+    "Digital Marketing",
+    "Data Micration",
+    "Hr Consulting",
+    "Payroll Management",
+    "SAP Consulting"
   ];
 
   return (

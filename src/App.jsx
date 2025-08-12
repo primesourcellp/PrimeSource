@@ -7,18 +7,30 @@ import Services from './component/Services/Service.jsx';
 import Copy from './layout/Copywrite/Copy.jsx';
 import Footer from './layout/Footer/Footer.jsx';
 import Navbar from './layout/Navbar/Navbar.jsx';
+import Testimonial from './component/Testimonial/Testimonial';
+import JobOpening from './component/Job/Job-seeker';
+import Development from './component/Services/Development';
+import HR_consulting from './component/Services/HR_consulting';
+import PayRoll from './component/Services/PayRoll';
 
 export default function App() {
   return (
+    
     <Router>
+     
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="/Services" element={<Services />} />
+         <Route path="/Services/Development" element={<Development />} />
+         <Route path="/Services/HR_consulting" element={<HR_consulting />} />
         <Route path="/Career" element={<Career />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/Testimonial" element={<Testimonial />} />
+        <Route path="/Job-seeker" element={< JobOpening/>} />
+        <Route path="/Services/PayRoll" element={< PayRoll/>} />
       </Routes>
       <Footer />
       <Copy />

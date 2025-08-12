@@ -13,21 +13,20 @@ import staffingImg from '../../assets/Full_time_staffing.png';
 import globalSourcingImg from '../../assets/Global_sourcing.png';
 import contractStaffingImg from '../../assets/contract_staffing.png';
 import webAppImg from '../../assets/two.png';
-import heroImg from '../../assets/hero.png';
 import expertiseIcon from '../../assets/hero.png'; // Example icon for a feature card
 import qualityIcon from '../../assets/hero.png';
 import integrityIcon from '../../assets/hero.png';
 import trackRecordIcon from '../../assets/hero.png';
 import supportIcon from '../../assets/hero.png';
 
-// ServiceCard component (no changes needed)
+// ServiceCard component - updated for new design
 const ServiceCard = ({ title, description, image }) => (
-  <div className="flex flex-col h-full p-8 pt-10 bg-[#B8E1DD] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-    <div className="w-24 h-24 mb-6 flex items-center justify-center rounded-full bg-[#E0F0EF] p-2 mx-auto">
+  <div className="flex flex-col items-center p-8 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 border border-white/20 h-full">
+    <div className="w-20 h-20 mb-6 flex items-center justify-center rounded-full bg-[#E0F0EF] p-2">
       <img
         src={image}
         alt={title}
-        className="w-20 h-20 object-contain"
+        className="w-16 h-16 object-contain"
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = "https://placehold.co/80x80/cccccc/ffffff?text=Img";
@@ -35,18 +34,18 @@ const ServiceCard = ({ title, description, image }) => (
       />
     </div>
     <h3 className="text-xl font-semibold text-[#3A9188] mb-2 text-center">{title}</h3>
-    <p className="text-[#062925] text-center">{description}</p>
+    <p className="text-[#062925] text-center text-sm">{description}</p>
   </div>
 );
 
-// New FeatureCard component for "Why Choose Us" section
+// FeatureCard component - updated for new design
 const FeatureCard = ({ title, content, icon }) => (
-  <div className="flex flex-col h-full p-6 bg-[#B8E1DD] rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
-    <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-[#E0F0EF] p-2 mx-auto">
+  <div className="flex flex-col items-center p-6 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 h-full">
+    <div className="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-[#E0F0EF] p-2">
       <img
         src={icon}
         alt={`${title} icon`}
-        className="w-12 h-12 object-contain"
+        className="w-14 h-14 object-contain"
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = "https://placehold.co/48x48/cccccc/ffffff?text=Icon";
@@ -61,11 +60,11 @@ const FeatureCard = ({ title, content, icon }) => (
 export default function ServicesPage() {
   // Parallax background logic
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 1]); // Changed back to [0, 100] for a more noticeable effect
+  const y = useTransform(scrollY, [0, 500], [0, 1000]);
 
   const services = [
     {
-      title: 'Web Development',
+      title: 'Web & Web Application Development',
       description: 'We deliver web development solutions that empower businesses to innovate, expand, and thrive — guiding you seamlessly from the first idea to a flawless launch.',
       image: webDevImg,
     },
@@ -109,14 +108,8 @@ export default function ServicesPage() {
       description: 'We provide the right talent exactly when you need it—whether for short-term projects or permanent roles, we ensure you\'re fully covered.',
       image: contractStaffingImg,
     },
-    {
-      title: 'Web Application',
-      description: 'Our focus on performance, security, and usability ensures you stay ahead in a competitive digital landscape.',
-      image: webAppImg,
-    }
   ];
 
-  // Updated 'whyChooseUs' data to include an icon for each card
   const whyChooseUs = [
     {
       title: "Specific Expertise",
@@ -151,140 +144,193 @@ export default function ServicesPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
+        staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5
+        duration: 0.6
       }
     }
   };
 
+  // NEW: Hover variants for card animations
+  const hoverVariants = {
+    initial: {
+      x: 0,
+      y: 0,
+      scale: 1,
+      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      transition: { duration: 0.2 }
+    },
+    hover: (direction) => ({
+      x: direction === 'left' ? -10 : direction === 'right' ? 10 : 0,
+      y: direction === 'top' ? -10 : direction === 'bottom' ? 10 : 0,
+      scale: 1.05,
+      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05)",
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        stiffness: 400,
+        damping: 10
+      }
+    }),
+  };
+
+  const directions = ['left', 'right', 'top', 'bottom'];
+
   return (
-    <motion.div
-      style={{
-        backgroundImage: `url(${parallaxBg})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        y,
-      }}
-      className="min-h-screen relative"
-    >
-      <div className="bg-[#F6F6F6]/80 backdrop-blur-sm min-h-screen">
-        {/* Hero Section - Styled like Home page Hero */}
-        <div className="relative w-full">
-          <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-10 py-45 px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              className="md:w-1/2 text-center md:text-left"
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+    <div className="relative overflow-hidden">
+      {/* Parallax Background */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-full z-0"
+        style={{
+          backgroundImage: `url(${parallaxBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          y
+        }}
+      />
+
+      {/* Content Container with semi-transparent overlay */}
+      <div className="relative z-10 min-h-screen bg-black/20 backdrop-blur-sm">
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
             >
-              <h1 className="text-5xl font-extrabold text-[#062925] mb-6 leading-tight">
-                Comprehensive Business Solutions
-              </h1>
-              <p className="text-xl text-[#044A42] mb-8">
-                We deliver tailored services designed to drive growth, efficiency, and innovation for your business.
-              </p>
-            </motion.div>
-            <motion.div
-              className="md:w-1/2 flex justify-center"
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              Comprehensive Business Solutions
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto"
             >
-              <img src={heroImg} alt="Hero" className="w-full max-w-lg rounded-2xl shadow-2xl border-[#B8E1DD]" />
-            </motion.div>
+              We deliver tailored services designed to drive growth, efficiency, and innovation for your business.
+            </motion.p>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="bg-white text-[#044A42] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg"
+            >
+              Explore Services
+            </motion.button>
           </div>
-        </div>
+        </section>
 
-        {/* Services Section - Styled like Home page's "Our Services" */}
-        <div className="w-full pt-16 mb-20 px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center text-[#044A42] mb-12"
-          >
-            Our Services
-          </motion.h2>
-          <motion.div
-            className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-              >
-                <ServiceCard {...service} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Why Choose Us Section - REVISED STRUCTURE */}
-        <div className="w-full mb-20 px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-center text-[#044A42] mb-12"
-          >
-            Why Choose Us
-          </motion.h2>
-          <motion.div
-            className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {whyChooseUs.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-              >
-                <FeatureCard {...feature} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* CTA Section - Maintains existing professional style */}
-        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
-          <section className="text-center max-w-screen-xl mx-auto">
-            <motion.div
+        {/* Services Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-sm">
+          <div className="max-w-9xl mx-auto">
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="bg-[#044A42] rounded-xl p-8 md:p-12 text-white shadow-xl"
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-4xl font-bold text-center text-[#044A42] mb-16"
             >
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Transform Your Business?</h3>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
-                Let's discuss how our services can help you achieve your business goals.
-              </p>
-              <button className="bg-white text-[#044A42] px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-                Contact Us
-              </button>
+              Our Services
+            </motion.h2>
+
+            <motion.div
+              className="flex flex-wrap justify-center gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  className="w-full sm:w-[45%] lg:w-[30%] xl:w-[28%]"
+                  variants={itemVariants}
+                >
+                  <motion.div
+                    className="h-full"
+                    initial="initial"
+                    whileHover="hover"
+                    custom={directions[index % directions.length]}
+                    variants={hoverVariants}
+                  >
+                    <ServiceCard {...service} />
+                  </motion.div>
+                </motion.div>
+              ))}
             </motion.div>
-          </section>
-        </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#044A42] bg-opacity-90 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-4xl font-bold text-center text-white mb-16"
+            >
+              Why Choose Us
+            </motion.h2>
+
+            <motion.div
+              className="flex flex-wrap justify-center gap-6"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {whyChooseUs.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className="w-full md:w-[48%] lg:w-[30%]"
+                  variants={itemVariants}
+                >
+                  <motion.div
+                    className="h-full"
+                    initial="initial"
+                    whileHover="hover"
+                    custom={directions[index % directions.length]}
+                    variants={hoverVariants}
+                  >
+                    <FeatureCard {...feature} />
+                  </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-9xl mx-auto bg-gradient-to-r from-[#044A42] to-[#3A9188] rounded-xl p-8 md:p-12 text-center text-white shadow-2xl"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">Ready to Transform Your Business?</h3>
+            <p className="text-lg mb-8 max-w-2xl mx-auto">
+              Let's discuss how our services can help you achieve your business goals.
+            </p>
+            <button className="bg-white text-[#044A42] px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg">
+              Contact Us
+            </button>
+          </motion.div>
+        </section>
       </div>
-    </motion.div>
+    </div>
   );
 }

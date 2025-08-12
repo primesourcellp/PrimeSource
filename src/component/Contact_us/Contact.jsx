@@ -5,7 +5,7 @@ import bgImage from "../../assets/IMG_2189[1].jpg"; // Replace with your actual 
 
 export default function Contact() {
   const mapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086148330651!2d-122.41941548468238!3d37.77492927975944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085818b165548e7%3A0x36d6c3541e48488d!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1688888888888!5m2!1sen!2sin";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.5581793847773!2d77.38933797483156!3d8.92060069113649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0427a947312531%3A0x37be84092961c8d5!2sPrimesource%20Consulting%20LLP!5e0!3m2!1sen!2sin!4v1754972707841!5m2!1sen!2sin";
 
   const [formData, setFormData] = useState({
     name: "",
@@ -154,11 +154,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">Mobile</p>
-                <p className="text-gray-700">(+91) 90250 82645</p>
-              </div>
-              <div>
-                <p className="text-lg font-semibold text-[#3A9188]">Phone</p>
-                <p className="text-gray-700">(+91) 81899 91250</p>
+                <p className="text-gray-700">(+91)  819-090-1250 </p>
               </div>
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">
