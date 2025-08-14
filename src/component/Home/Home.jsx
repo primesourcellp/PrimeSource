@@ -11,14 +11,27 @@ import meetingImg from '../../assets/one.png';
 import userImg from '../../assets/three.png';
 import teamImg from '../../assets/two.png';
 import clientLogo from '../../assets/client_logo_1.png';
+import clientLogo1 from '../../assets/client_logo_2.png';
+import clientLogo2 from '../../assets/client_logo_3.png';
+import clientLogo3 from '../../assets/client_logo_4.png';
+import clientLogo4 from '../../assets/client_logo_5.png';
 import heroBg from '../../assets/intro.jpg';
 import JobDriveBanner from '../MovingDots/dot';
+import FollowCursorContact from '../Animations/Smoke';
 import { Link } from "react-router-dom";
 
 // Main Home component
 export default function Home() {
   const logosContainerRef = useRef(null);
-  const logos = Array(10).fill(clientLogo);
+  const logos = [
+  clientLogo,
+  clientLogo1,
+  clientLogo2,
+  clientLogo3,
+  clientLogo4,
+ 
+];
+
 
   useEffect(() => {
     // Initialize AOS for scroll animations
@@ -118,7 +131,9 @@ export default function Home() {
               Driving Innovation with Expert Development Consulting for Business Success.
             </motion.p>
           </motion.div>
+            <FollowCursorContact />
           <JobDriveBanner />
+         
         </div>
       </div>
 
@@ -445,32 +460,40 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Mobile Version - Single Highlighted Logo */}
-          <div className="md:hidden">
+          {/* Mobile Version - Auto-scrolling Logos */}
+      <div className="md:hidden w-full overflow-hidden py-4">
+        <motion.div
+          className="flex gap-6 min-w-max"
+          animate={{ x: ['0%', '-50%'] }} // move left
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 15,
+              ease: 'linear',
+            },
+          }}
+        >
+          {/* Repeat logos twice for seamless loop */}
+          {[...logos, ...logos].map((logo, index) => (
             <motion.div
-              className="flex overflow-x-auto py-4 hide-scrollbar"
-              ref={logosContainerRef}
+              key={`mobile-${index}`}
+              className="flex-shrink-0"
+              whileHover={{ scale: 1.1 }}
             >
-              {logos.map((logo, index) => (
-                <motion.div
-                  key={`mobile-${index}`}
-                  className={`flex-shrink-0 px-6 ${index === 2 ? 'highlighted-logo' : ''}`}
-                  whileHover="hover"
-                  variants={logoVariants}
-                  initial="visible"
-                  animate={index === 2 ? "highlight" : "visible"}
-                >
-                  <img
-                    src={logo}
-                    alt={`Client Logo ${index + 1}`}
-                    className={`h-16 object-contain ${index === 2 ? 'grayscale-0' : 'grayscale'} transition-all duration-300`}
-                  />
-                </motion.div>
-              ))}
+              <img
+                src={logo}
+                alt={`Client Logo ${index + 1}`}
+                className="h-16 object-contain"
+              />
             </motion.div>
-          </div>
+          ))}
         </motion.div>
       </div>
+            
+        </motion.div>
+      </div>
+      
     </section>
   );
 }

@@ -136,6 +136,7 @@ export default function Contact() {
               )}
             </form>
           </motion.div>
+          
 
           {/* Right Column: Contact Details */}
           <motion.div
@@ -150,7 +151,7 @@ export default function Contact() {
             <div className="space-y-6">
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">Email</p>
-                <p className="text-gray-700">selva.r@primesourcellp.com</p>
+                <p className="text-gray-700">recruit@primesourcellp.com</p>
               </div>
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">Mobile</p>
@@ -189,6 +190,7 @@ export default function Contact() {
           ></iframe>
         </motion.div>
       </div>
+      
     </section>
   );
 }

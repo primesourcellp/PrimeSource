@@ -31,6 +31,7 @@ export default function Footer() {
             <div className="flex space-x-5">
               <a href="/" className="hover:text-[#3A9188]"><FaFacebookF /></a>
               <a href="/" className="hover:text-[#3A9188]"><FaWhatsapp /></a>
+              <a href="/" className="hover:text-[#3A9188]"><FaTwitter /></a>
               <a href="https://www.instagram.com/primesource_consulting_llp?utm_source=ig_web_button_share_sheet&igsh=M3cxczAwaGFlN29z" className="hover:text-[#3A9188]"><FaInstagram /></a>
               <a href="https://www.linkedin.com/company/primesourceconsulting/" className="hover:text-[#3A9188]"><FaLinkedin /></a>
             </div>

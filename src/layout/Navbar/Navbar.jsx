@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom"; // Use NavLink for active styling
 import logo from "../../assets/logo.png";
+import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 export default function Navbar() {
@@ -74,14 +75,147 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Menu */}
-        <div
-          className={`md:flex ${open ? "block" : "hidden"} 
-            absolute md:static top-16 space-x-8 left-0 w-full 
-            ${scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"} 
-            md:bg-transparent md:w-auto p-4 md:p-0 z-10`}
+       {/* Mobile Menu */}
+<div
+  className={`md:hidden fixed top-0 left-0 w-full h-full bg-[#062925] z-50 p-6 flex flex-col transition-transform duration-300 ${
+    open ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+  {/* Top section: Logo + Close button */}
+  <div className="flex justify-between items-center mb-8">
+    <NavLink to="/Home" onClick={() => setOpen(false)}>
+      <img src={logo} alt="Logo" className="w-28" />
+    </NavLink>
+  <button onClick={() => setOpen(false)} aria-label="Close menu">
+  <motion.svg
+    className="w-6 h-6 text-white"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    whileHover={{ rotate: 90, scale: 1.2 }}
+    whileTap={{ scale: 0.9, rotate: 180 }}
+    initial={{ rotate: 0 }}
+    animate={{ rotate: 0 }}
+  >
+    <path d="M6 18L18 6M6 6l12 12" />
+  </motion.svg>
+</button>
+  </div>
+
+  
+
+  {/* Links */}
+  <NavLink
+    to="/Home"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    Home
+  </NavLink>
+  <NavLink
+    to="/About"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    About
+  </NavLink>
+
+  {/* Services Dropdown */}
+  <div className="py-2">
+    <button
+      onClick={() => setServicesOpen(!servicesOpen)}
+      className="flex justify-between w-full text-white text-lg hover:text-[#b8e1dd]"
+    >
+      Services ▸
+    </button>
+    {servicesOpen && (
+      <div className="pl-4 mt-2 space-y-1">
+        <NavLink
+          to="/services/Development"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
         >
-          {/* Home */}
+          Software Development
+        </NavLink>
+        <NavLink
+          to="/services/HR_consulting"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
+        >
+          HR Consulting
+        </NavLink>
+        <NavLink
+          to="/Services/PayRoll"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
+        >
+          PayRoll Service
+        </NavLink>
+        <NavLink
+          to="/Services/Global"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
+        >
+          Global Recruitment
+        </NavLink>
+        <NavLink
+          to="/Services/Staffing"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
+        >
+          Staffing Service
+        </NavLink>
+        <NavLink
+          to="/Services/Digital_Marketing"
+          onClick={() => setOpen(false)}
+          className="block text-white py-1 hover:text-[#b8e1dd]"
+        >
+          Digital Marketing
+        </NavLink>
+      </div>
+    )}
+  </div>
+
+  {/* Job Seeker */}
+  <NavLink
+    to="/Job-seeker"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    Job Seeker
+  </NavLink>
+
+  <NavLink
+    to="/Career"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    Career
+  </NavLink>
+  <NavLink
+    to="/Testimonial"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    Testimonial
+  </NavLink>
+  <NavLink
+    to="/Contact"
+    onClick={() => setOpen(false)}
+    className="block text-white py-2 text-lg hover:text-[#b8e1dd]"
+  >
+    Contact
+  </NavLink>
+</div>
+
+        {/* Desktop Menu */}
+        <div
+          className={`hidden md:flex space-x-8 ${scrolled ? "" : "text-white"}`}
+        >
+          {/* ... Desktop links are here, unchanged ... */}
           <NavLink
             to="/Home"
             onClick={() => setOpen(false)}
@@ -125,67 +259,63 @@ export default function Navbar() {
 
 
                 {/* Software Development */}
-            <div
-              className="relative"
-              onMouseEnter={() => setWebDevOpen(true)}
-              onMouseLeave={() => setWebDevOpen(false)}
-            >
-              <NavLink
-                to="/Services/Development"
-                className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              >
-                Software Development ▸
-              </NavLink>
+                <div
+                  className="relative"
+                  onMouseEnter={() => setWebDevOpen(true)}
+                  onMouseLeave={() => setWebDevOpen(false)}
+                >
+                  <NavLink
+                    to="/Services/Development"
+                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Software Development ▸
+                  </NavLink>
 
-              {webDevOpen && (
-                <div className="absolute left-full top-0 bg-white shadow-lg rounded-md w-64">
-                  <NavLink to="/services/web-development" className="block px-4 py-2 hover:bg-gray-100">
-                    Web Development
-                  </NavLink>
-                  <NavLink to="/services/webapp-development" className="block px-4 py-2 hover:bg-gray-100">
-                    Web App Development
-                  </NavLink>
+                  {webDevOpen && (
+                    <div className="absolute left-full top-0 bg-white shadow-lg rounded-md w-64">
+                      <p className="py-1">HR Payroll and Statutory Service</p>
+                      <p className="py-1">Payroll Outsourcing</p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
 
                 <NavLink to="/services/HR_consulting" className="block px-4 py-2 hover:bg-gray-100">
                   HR Consulting
                 </NavLink>
 
-              {/* Payroll Service */}
-              <div
-                className="relative"
-                onMouseEnter={() => setPayrollOpen(true)}
-                onMouseLeave={() => setPayrollOpen(false)}
-              >
-                <NavLink
-                  to="/Services/PayRoll"
-                  className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                {/* Payroll Service */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => setPayrollOpen(true)}
+                  onMouseLeave={() => setPayrollOpen(false)}
                 >
-                  Payroll Service ▸
-                </NavLink>
+                  <NavLink
+                    to="/Services/PayRoll"
+                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Payroll Service ▸
+                  </NavLink>
 
-                {payrollOpen && (
-                  <div className="absolute left-full top-0 bg-white shadow-lg rounded-md w-64 px-4 py-2">
-                    <p className="py-1">HR Payroll and Statutory Service</p>
-                    <p className="py-1">Payroll Outsourcing</p>
-                  </div>
-                )}
-              </div>
+                  {payrollOpen && (
+                    <div className="absolute left-full top-0 bg-white shadow-lg rounded-md w-64 px-4 py-2">
+                      <p className="py-1">HR Payroll and Statutory Service</p>
+                      <p className="py-1">Payroll Outsourcing</p>
+                    </div>
+                  )}
+                </div>
 
 
                 {/* Global Recruitment */}
-                <NavLink to="/services/global-recruitment" className="block px-4 py-2 hover:bg-gray-100">
+                <NavLink to="/Services/Global" className="block px-4 py-2 hover:bg-gray-100">
                   Global Recruitment
                 </NavLink>
 
                 {/* Staffing Service */}
-                <NavLink to="/services/staffing-service" className="block px-4 py-2 hover:bg-gray-100">
+                <NavLink to="/Services/Staffing" className="block px-4 py-2 hover:bg-gray-100">
                   Staffing Service
                 </NavLink>
                 {/* Staffing Service */}
-                <NavLink to="/services/Digital-marketing" className="block px-4 py-2 hover:bg-gray-100">
+                <NavLink to="/Services/Digital_Marketing" className="block px-4 py-2 hover:bg-gray-100">
                   Digital Marketing
                 </NavLink>
               </div>
@@ -213,6 +343,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
+          
 
           {/* Career */}
           <NavLink

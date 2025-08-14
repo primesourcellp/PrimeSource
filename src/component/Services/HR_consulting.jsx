@@ -1,256 +1,394 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FaUserTie, FaChartLine, FaUsers, FaGraduationCap, FaHandshake, FaLightbulb, FaBriefcase } from 'react-icons/fa';
+import WaveBanner from '../Animations/WaveBanner';
+import { TypeAnimation } from 'react-type-animation';
 
-// Placeholder images - in a real app, you would import actual assets
-const heroImage = "https://placehold.co/1200x600/60A5FA/FFFFFF?text=Modern+Web+Dev";
-const brandIdentityIcon = "https://placehold.co/80x80/34D399/FFFFFF?text=Brand";
-const salesConversionsIcon = "https://placehold.co/80x80/FBBF24/FFFFFF?text=Sales";
-const credibilityTrustIcon = "https://placehold.co/80x80/93C5FD/FFFFFF?text=Trust";
-const customerSupportIcon = "https://placehold.co/80x80/EC4899/FFFFFF?text=Support";
-const uxIcon = "https://placehold.co/80x80/8B5CF6/FFFFFF?text=UX";
-const securityIcon = "https://placehold.co/80x80/EF4444/FFFFFF?text=Security";
-const scalabilityIcon = "https://placehold.co/80x80/10B981/FFFFFF?text=Scale";
+const HRConsultingPage = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
-// Framer Motion variants for section entry
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      staggerChildren: 0.2
-    }
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
-    }
-  },
-};
-
-const cardHoverVariants = {
-  initial: { scale: 1, boxShadow: "0 4px 6px rgba(0,0,0,0.1)" },
-  hover: { scale: 1.05, boxShadow: "0 10px 15px rgba(0,0,0,0.2)", y: -5, transition: { type: "spring", stiffness: 300 } }
-};
-
-const ServiceFeatureCard = ({ icon, title, description }) => (
-  <motion.div
-    className="bg-white rounded-lg p-6 shadow-md flex flex-col items-center text-center border border-gray-200"
-    variants={cardHoverVariants}
-    initial="initial"
-    whileHover="hover"
-  >
-    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-      <img src={icon} alt={title} className="w-12 h-12 object-contain" />
-    </div>
-    <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
-    <p className="text-gray-600 text-sm">{description}</p>
-  </motion.div>
-);
-
-export default function DevelopmentPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: false,
+      mirror: true
+    });
+  }, []);
   return (
-    <div className="min-h-screen bg-gray-50 font-inter">
-      {/* Hero Section */}
-      <section 
-        className="relative bg-cover bg-center h-[70vh] flex items-center justify-center text-white"
-        style={{ backgroundImage: `url(${heroImage})` }}
+    <div className="bg-gray-50">
+
+        
+      {/* Hero Section with White Background */}
+     <section 
+  ref={ref}
+  className="relative h-screen overflow-hidden bg-white text-[#044A42] py-20 px-6 flex items-center"
+>
+  <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    {/* Left Column - Hero Content */}
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="text-left"
+    >
+      <h1 
+        className="text-4xl md:text-5xl font-bold mb-6"
+        data-aos="fade-right"
+        data-aos-delay="100"
       >
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-        <motion.div 
-          className="relative z-10 text-center max-w-4xl mx-auto px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        Strategic HR Consulting
+      </h1>
+      <p 
+        className="text-xl md:text-2xl mb-8"
+        data-aos="fade-right"
+        data-aos-delay="200"
+      >
+        Transforming your workforce into a competitive advantage
+      </p>
+      <div data-aos="fade-right" data-aos-delay="300">
+        <motion.button
+          className="bg-[#3A9188] hover:bg-[#2D7A72] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-lg"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-            Professional Web Development: <br className="hidden md:block"/> Your Digital Foundation for Growth
-          </h1>
-          <p className="text-lg md:text-xl font-light mb-8">
-            Crafting functional, secure, and optimized websites that drive business success
-          </p>
-          <motion.button
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          Get Started
+        </motion.button>
+        
+      </div>
+    </motion.div>
+
+   {/* Right Column - Introduction Content */}
+<motion.div
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="p-8 rounded-lg"
+  data-aos="fade-left"
+  data-aos-delay="400"
+>
+  {/* Typing animation for heading */}
+  <TypeAnimation
+    sequence={[
+      'Expert HR Solutions',
+      2000, // pause after typing
+      '', // clear text
+      500
+    ]}
+    wrapper="h2"
+    cursor={true}
+    className="text-2xl md:text-3xl font-bold text-[#044A42] mb-6"
+    speed={30}
+    repeat={Infinity}
+  />
+
+  {/* Typing animation for paragraph */}
+  <TypeAnimation
+    sequence={[
+      "We provide comprehensive HR consulting services designed to align your human capital strategy with business objectives.",
+      3000,
+      '',
+      500
+    ]}
+    wrapper="p"
+    cursor={true}
+    className="text-gray-700 leading-relaxed mb-6"
+    speed={50}
+    repeat={Infinity}
+  />
+
+  <ul className="space-y-3 text-gray-600">
+    {[
+      "Build high-performing teams",
+      "Optimize HR processes",
+      "Create thriving workplaces"
+    ].map((item, index) => (
+      <li 
+        key={index}
+        className="flex items-start"
+        data-aos="fade-left"
+        data-aos-delay={500 + (index * 100)}
+      >
+        <span className="text-[#3A9188] mr-2">•</span>
+        <TypeAnimation
+          sequence={[
+            item,
+            1500,
+            '',
+            500
+          ]}
+          wrapper="span"
+          cursor={true}
+          speed={60}
+          repeat={Infinity}
+        />
+      </li>
+    ))}
+  </ul>
+</motion.div>
+
+  </div>
+
+
+   {/* Scroll Down Indicator */}
+  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+    <div className="flex flex-col items-center text-gray-500">
+      <span className="text-sm mb-1">Read More</span>
+      <motion.div
+        animate={{ y: [0, 6, 0] }}
+        transition={{ repeat: Infinity, duration: 1.2 }}
+        className="w-5 h-8 border-2 border-gray-400 rounded-full flex justify-center p-1"
+      >
+        <motion.span
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.2 }}
+          className="w-1 h-2 bg-gray-400 rounded-full"
+        />
+      </motion.div>
+    </div>
+  </div>
+  <WaveBanner/>
+</section>
+
+      {/* Rest of the sections remain the same */}
+      {/* Introduction Section */}
+     
+      {/* Value Proposition Section */}
+      <section className="py-20 px-6 bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto">
+          <h2 
+            className="text-3xl font-bold text-center text-[#044A42] mb-16"
+            data-aos="fade-up"
           >
-            Get a Free Consultation
-          </motion.button>
-        </motion.div>
+            Why Partner With Us?
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-10">
+            {[
+              {
+                icon: <FaUserTie className="text-[#3A9188] text-4xl mb-4" />,
+                title: "Industry Expertise",
+                description: "Our consultants bring decades of combined experience across diverse industries and organizational sizes."
+              },
+              {
+                icon: <FaLightbulb className="text-[#3A9188] text-4xl mb-4" />,
+                title: "Innovative Solutions",
+                description: "We combine best practices with innovative approaches tailored to your unique challenges."
+              },
+              {
+                icon: <FaBriefcase className="text-[#3A9188] text-4xl mb-4" />,
+                title: "Practical Implementation",
+                description: "We don't just advise - we help implement solutions that deliver measurable results."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <div className="text-center">
+                  <div data-aos="zoom-in" data-aos-delay={index * 100 + 100}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#062925] mb-3">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* Introduction/Overview Section */}
-      <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            The Heartbeat of Your Brand's Online Presence
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            In today's competitive digital landscape, your website is often the first interaction potential customers have with your business. Professional web development ensures this crucial first impression is impactful, with a site that is not just aesthetically pleasing but also functional, secure, and optimized to help your business thrive.
-          </motion.p>
-        </div>
-      </motion.section>
+      {/* Services Section */}
+    <section className="py-20 px-6 bg-gradient-to-b from-white to-gray-50">
+  <div className="max-w-7xl mx-auto">
+    <h2
+      className="text-4xl font-bold text-center text-[#044A42] mb-4"
+      data-aos="fade-up"
+    >
+      Our HR Consulting Services
+    </h2>
+    <p
+      className="text-center text-lg text-gray-600 max-w-3xl mx-auto mb-16"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      We offer a full spectrum of HR services to help you build, develop, and retain a high-performing workforce.
+    </p>
 
-      {/* Role of Web Development Section */}
-      <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
-            The Pivotal Role of Web Development in Modern Business
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={brandIdentityIcon}
-                title="Brand Identity"
-                description="Your website is the digital face of your brand, communicating its values and personality."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={salesConversionsIcon}
-                title="Sales & Conversions"
-                description="A well-designed site guides visitors through the sales funnel, turning leads into customers."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={credibilityTrustIcon}
-                title="Credibility & Trust"
-                description="A professional online presence builds confidence and establishes your authority in the market."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={customerSupportIcon}
-                title="Customer Support"
-                description="Provide seamless support, FAQs, and resources to enhance customer satisfaction."
-              />
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Advantages Section */}
-      <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
-            Key Advantages of Professional Web Development
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={uxIcon}
-                title="Enhanced User Experience (UX)"
-                description="From fast loading speeds and mobile responsiveness to clear navigation and engaging layouts, we prioritize your users."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={securityIcon}
-                title="Robust Security Measures"
-                description="Protect your business from cyber threats with secure coding practices, regular updates, data encryption, and disaster recovery."
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <ServiceFeatureCard
-                icon={scalabilityIcon}
-                title="Scalability for Future Growth"
-                description="Your website will be built to evolve with your business, easily accommodating new features, integrations, and international expansion."
-              />
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Why Invest Now Section */}
-      <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800 text-white"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-6">
-            Don't Delay: The Urgency of Investing in Web Development
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
-            Delaying your investment in professional web development can be costly, leading to lost customers, reduced trust, and missed opportunities. Starting now means you reap the benefits sooner and stay ahead of the curve.
-          </motion.p>
-          <motion.ul variants={sectionVariants} className="space-y-4 text-left inline-block">
-            <motion.li variants={itemVariants} className="flex items-start">
-              <span className="text-yellow-400 text-2xl mr-3">&bull;</span>
-              <p className="text-lg">
-                <span className="font-semibold">Competitors are advancing:</span> Your rivals are continuously improving their online presence; don't get left behind.
-              </p>
-            </motion.li>
-            <motion.li variants={itemVariants} className="flex items-start">
-              <span className="text-yellow-400 text-2xl mr-3">&bull;</span>
-              <p className="text-lg">
-                <span className="font-semibold">Search engines favor optimized sites:</span> Well-built and regularly updated sites rank higher, increasing your visibility.
-              </p>
-            </motion.li>
-            <motion.li variants={itemVariants} className="flex items-start">
-              <span className="text-yellow-400 text-2xl mr-3">&bull;</span>
-              <p className="text-lg">
-                <span className="font-semibold">Catch-up is harder later:</span> The longer you wait, the more challenging it becomes to regain ground in rankings and market visibility.
-              </p>
-            </motion.li>
-          </motion.ul>
-        </div>
-      </motion.section>
-
-      {/* Final Thoughts / CTA Section */}
-      <motion.section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            Ready to Build Your Digital Future?
-          </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8">
-            In the digital-first economy, web development is not optional—it's essential. It's the platform upon which all your marketing, sales, and branding efforts are built. Let us help you create a powerful online presence that attracts, engages, and converts customers, keeping your brand ahead of the competition.
-          </motion.p>
-          <motion.button
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+    <div className="grid md:grid-cols-2 gap-10">
+      {[
+        {
+          icon: <FaUsers className="text-4xl text-white" />,
+          title: "Talent Strategy",
+          items: [
+            "Workforce planning & organizational design",
+            "Recruitment process optimization",
+            "Employer branding & candidate experience",
+          ],
+          color: "from-emerald-500 to-teal-600",
+        },
+        {
+          icon: <FaGraduationCap className="text-4xl text-white" />,
+          title: "Learning & Development",
+          items: [
+            "Leadership development programs",
+            "Competency frameworks & skills assessments",
+            "Custom training solutions",
+          ],
+          color: "from-indigo-500 to-blue-600",
+        },
+        {
+          icon: <FaChartLine className="text-4xl text-white" />,
+          title: "Performance & Analytics",
+          items: [
+            "Performance management systems",
+            "HR metrics & workforce analytics",
+            "Employee engagement strategies",
+          ],
+          color: "from-orange-500 to-red-600",
+        },
+        {
+          icon: <FaHandshake className="text-4xl text-white" />,
+          title: "HR Transformation",
+          items: [
+            "HR process optimization",
+            "Change management support",
+            "HR technology implementation",
+          ],
+          color: "from-purple-500 to-pink-600",
+        },
+      ].map((service, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+          data-aos-delay={index * 150}
+        >
+          <div
+            className={`w-14 h-14 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-md`}
           >
-            Start Your Project Today
-          </motion.button>
+            {service.icon}
+          </div>
+          <h3 className="text-2xl font-semibold text-[#062925] mb-4">
+            {service.title}
+          </h3>
+          <ul className="space-y-3">
+            {service.items.map((item, itemIndex) => (
+              <li
+                key={itemIndex}
+                className="flex items-start text-gray-600"
+                data-aos="fade-right"
+                data-aos-delay={index * 150 + itemIndex * 50 + 150}
+              >
+                <span className="text-[#3A9188] mr-2">✔</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      </motion.section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+      {/* Process Section */}
+      <section className="py-20 px-6 bg-[#062925] text-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 
+            className="text-3xl font-bold text-center mb-16"
+            data-aos="fade-up"
+          >
+            Our Approach
+          </h2>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                step: "01",
+                title: "Discovery",
+                description: "Deep dive into your business goals and HR challenges"
+              },
+              {
+                step: "02",
+                title: "Assessment",
+                description: "Comprehensive analysis of current HR practices"
+              },
+              {
+                step: "03",
+                title: "Solution Design",
+                description: "Customized strategies aligned with your objectives"
+              },
+              {
+                step: "04",
+                title: "Implementation",
+                description: "Practical execution with measurable outcomes"
+              }
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className="text-center"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <div 
+                  className="bg-[#3A9188] rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-xl font-bold shadow-lg"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 100 + 100}
+                >
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                <p className="text-gray-300">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 bg-[#3A9188] text-white">
+        <div 
+          className="max-w-4xl mx-auto text-center"
+          data-aos="zoom-in"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your HR Strategy?</h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto">
+            Let's discuss how we can help you build a workforce that drives business success.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <motion.button
+              className="bg-[#062925] hover:bg-[#044A42] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Schedule Consultation
+            </motion.button>
+            <motion.button
+              className="bg-white hover:bg-gray-100 text-[#062925] font-medium py-3 px-8 rounded-lg transition-colors shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Call Us Now
+            </motion.button>
+            
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default HRConsultingPage;
