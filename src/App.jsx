@@ -1,5 +1,6 @@
 // import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Route, Routes, HashRouter as Router } from 'react-router-dom';
+// import { Route, Routes, HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import About from './component/About/About.jsx';
 import Career from './component/Career/Career.jsx';
