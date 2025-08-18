@@ -1,14 +1,15 @@
 {
   "homepage": "https://primesourcellp.github.io/PrimeSource",
-  "name": "primesource",
+  "name": "PrimeSource",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+     "predeploy": "npm run build && cp dist/index.html dist/404.html"
   },
   "dependencies": {
     "@react-three/fiber": "^9.3.0",

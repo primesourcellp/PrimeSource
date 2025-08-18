@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import bgImage from "../../assets/IMG_2189[1].jpg"; // Replace with your actual image path
+import FollowCursorContact from "../Animations/FollowCursorContact "
 
 export default function Contact() {
   const mapSrc =
@@ -169,6 +170,7 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
+          <FollowCursorContact/>
         </div>
 
         {/* Full-width Map Section */}
