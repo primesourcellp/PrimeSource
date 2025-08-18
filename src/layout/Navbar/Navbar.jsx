@@ -33,10 +33,11 @@ export default function Navbar() {
     : { color: scrolled ? "rgba(0,0,0,0.9)" : "white" };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 
-        ${scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"}`}
-    >
+  <nav
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+    ${open ? "bg-[#062925]" : scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"}`}
+>
+
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
         <NavLink to="/Home" className="flex items-center gap-2" style={textColorStyle}>
