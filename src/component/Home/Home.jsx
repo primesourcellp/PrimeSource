@@ -86,52 +86,46 @@ export default function Home() {
   };
 
   return (
-    <section className="bg-[#F6F6F6] pt-20 pb-20">
+    <section className="bg-[#F6F6F6] pt-0 pb-20">
       {/* Hero Section */}
       <div
         className="relative w-full bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         <div className="absolute inset-10 bg-[#F6F6F6] opacity-5 z-0"></div>
-        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-10 py-70 px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            className="md:w-1/2 text-center md:text-left"
-            initial={{ y: 50, opacity: 90 }}
-            animate={{ y: [30, 0, 30], opacity: [10, 1, 10] }}
-            transition={{
-              duration: 2,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-          >
-            <motion.h1
-              className="text-5xl font-extrabold text-[#062925] mb-6 leading-tight"
-              animate={{ y: [20, 0, 20] }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-            >
-              We turn your career dreams into clickable reality.
-            </motion.h1>
-            <motion.p
-              className="text-xl text-[#044A42] mb-8"
-              animate={{ y: [20, 0, 20] }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: 0.1,
-              }}
-            >
-              Driving Innovation with Expert Development Consulting for Business Success.
-            </motion.p>
-          </motion.div>
-            <FollowCursorContact />
+        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-10 py-68 px-4 sm:px-6 lg:px-8 relative z-10">
+       
+       
+            <motion.div
+        className="md:w-1/2 text-center md:text-left"
+        initial={{ y: 50, opacity: 0, scale: 0.95, rotate: -2 }}
+        animate={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
+        transition={{
+          duration: 1.5,
+          ease: "easeOut"
+        }}
+      >
+        <motion.h1
+          className="text-5xl font-extrabold text-[#062925] mb-6 leading-tight"
+          initial={{ y: 40, opacity: 0, scale: 0.9, skewY: 5 }}
+          animate={{ y: 0, opacity: 1, scale: 1, skewY: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+        >
+          We turn your career dreams into clickable reality.
+        </motion.h1>
+
+        <motion.p
+          className="text-xl text-[#044A42] mb-8"
+          initial={{ y: 40, opacity: 0, scale: 0.9, skewX: -5 }}
+          animate={{ y: 0, opacity: 1, scale: 1, skewX: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
+        >
+          Driving Innovation with Expert Development Consulting for Business Success.
+        </motion.p>
+      </motion.div>
+
+
+            {/* <FollowCursorContact /> */}
           <JobDriveBanner />
          
         </div>
@@ -164,7 +158,8 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-lg text-[#062925] mb-6"
               >
-                Built on a foundation of excellence and integrity, PrimeSource Consulting LLP stands as a trusted partner for employers and job seekers alike. Leveraging our deep industry expertise and expansive network, we deliver exceptional placement solutions that drive success for both clients and candidates.
+               At Primesources LLP , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
+
               </motion.p>
             </div>
             <div className="md:w-1/2 bg-[#B8E1DD] p-6 rounded-xl">

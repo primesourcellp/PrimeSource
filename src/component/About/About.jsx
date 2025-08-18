@@ -2,24 +2,97 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import companyIntroImg from '../../assets/four.png';
 import ethicsImg from '../../assets/one.png';
-import screeningProcessImg from '../../assets/three.png';
-import onboardingBenefitsImg from '../../assets/five.png';
+import developmentProcessImg from '../../assets/three.png';
+import hrSolutionsImg from '../../assets/five.png';
 
-// Enhanced CollapsibleContent component with improved styling
+// Scroll animation variants
+const scrollVariants = {
+  offscreen: {
+    opacity: 0,
+    y: 50
+  },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8
+    }
+  }
+};
+
+// Directional animation variants
+const slideInFromLeft = {
+  offscreen: {
+    opacity: 0,
+    x: -50
+  },
+  onscreen: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      duration: 0.5
+    }
+  }
+};
+
+const slideInFromRight = {
+  offscreen: {
+    opacity: 0,
+    x: 50
+  },
+  onscreen: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      duration: 0.5
+    }
+  }
+};
+
+const fadeIn = {
+  offscreen: {
+    opacity: 0
+  },
+  onscreen: {
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut"
+    }
+  }
+};
+
 const CollapsibleContent = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-  
-    <div className="mb-4">
+    <motion.div 
+      className="mb-4"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={scrollVariants}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-full text-left py-3 px-6 bg-gradient-to-r from-[#F0F7F6] to-[#E0F0EF] rounded-lg transition-all duration-300 hover:from-[#E0F0EF] hover:to-[#B8E1DD] shadow-sm"
       >
         <h3 className="text-2xl font-bold text-[#044A42]">{title}</h3>
-        <span className="text-3xl text-[#3A9188] font-semibold transition-transform duration-300 transform">
+        <motion.span 
+          className="text-3xl text-[#3A9188] font-semibold"
+          animate={{ rotate: isOpen ? 0 : 180 }}
+          transition={{ duration: 0.3 }}
+        >
           {isOpen ? '−' : '+'}
-        </span>
+        </motion.span>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -36,19 +109,16 @@ const CollapsibleContent = ({ title, children }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
-// Enhanced "What We Do" component
 const WhatWeDoList = () => {
   const items = [
-    "Web Development",
-    "Digital Marketing",
-    "Data Micration",
-    "Hr Consulting",
-    "Payroll Management",
-    "SAP Consulting"
+    "Premium Web & App Development",
+    "Strategic Digital Marketing",
+    "Expert HR Consulting",
+    "Efficient Payroll Management",
   ];
 
   return (
@@ -56,9 +126,10 @@ const WhatWeDoList = () => {
       {items.map((item, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.05 }} /* Reduced delay for faster animation */
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
           className="flex items-center p-4 bg-white rounded-lg shadow-sm border border-[#B8E1DD] hover:shadow-md transition-all duration-300"
         >
           <div className="flex-shrink-0 w-8 h-8 bg-[#3A9188] rounded-full flex items-center justify-center mr-4">
@@ -72,256 +143,267 @@ const WhatWeDoList = () => {
 };
 
 export default function About() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1 // Reduced stagger time for overall section
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.3 // Reduced duration for faster individual item animation
-      }
-    }
-  };
-
   return (
-    <section className="bg-white py-20 px-4 md:px-8">
-      {/* About Us Main Heading with animation */}
+    <section className="bg-white py-20 px-4 md:px-8 overflow-hidden">
+      {/* About Us Main Heading */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }} // Faster overall fade-in for the heading block
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
         className="text-center mb-16 pt-10"
       >
         <motion.h1
           className="text-5xl font-extrabold text-[#044A42] mb-4"
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }} // Faster text slide-in
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           About Us
         </motion.h1>
         <motion.div
           className="w-24 h-2 bg-[#3A9188] mx-auto rounded-full"
           initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }} // Faster underline expansion
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         />
       </motion.div>
       
-      {/* Section 1: Your Nationwide Talent Partner */}
+      {/* Section 1: Your Partner in Digital & Business Solutions */}
       <motion.div
-        // Removed md:max-w-7xl here to allow full width on desktop.
-        // mx-auto will center the content, and section's padding will manage spacing.
-        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20" 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20 max-w-7xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
       >
-        <motion.div variants={itemVariants} className="md:w-1/2 text-left">
+        <motion.div 
+          className="md:w-1/2 text-left"
+          variants={slideInFromLeft}
+        >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Your Nationwide Talent Partner – Trusted by Employers, Preferred by Professionals.
+            Your Partner in Digital Transformation and Business Excellence.
           </h2>
-          <p className="text-[#062925] text-lg mb-8">
-            Built on a foundation of excellence and integrity, PrimeSource Consulting LLP stands as a trusted
-            partner for employers and job seekers alike. Leveraging our deep industry expertise and expansive
-            network, we deliver exceptional placement solutions that drive success for both clients and candidates.
-          </p>
-          <h3 className="text-2xl font-bold text-[#3A9188] mb-4">What We Do</h3>
+          <motion.p 
+            className="text-[#062925] text-lg mb-8"
+            variants={fadeIn}
+          >
+            PrimeSource Consulting LLP is where innovation meets execution. We are a dynamic firm dedicated to delivering premium software solutions and comprehensive business services. From crafting state-of-the-art web applications to managing your HR and payroll, we provide the tools and expertise your business needs to thrive in a competitive landscape.
+          </motion.p>
+          <motion.h3 
+            className="text-2xl font-bold text-[#3A9188] mb-4"
+            variants={fadeIn}
+          >
+            Our Core Services
+          </motion.h3>
           <WhatWeDoList />
         </motion.div>
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
+        <motion.div 
+          className="md:w-1/2 flex justify-center"
+          variants={slideInFromRight}
+        >
           <motion.img
             src={companyIntroImg}
-            alt="Team Collaboration"
+            alt="PrimeSource Consulting Team Collaboration"
             className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.1, delay: 0.1 }} // Faster image animation
             whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
       </motion.div>
 
-      {/* Section 2: Our Approach and Work Ethics */}
+      {/* Section 2: Our Commitment to Quality */}
       <motion.div
-        // Removed md:max-w-7xl here to allow full width on desktop.
-        className="mx-auto flex flex-col md:flex-row-reverse items-center gap-12 mb-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        className="mx-auto flex flex-col md:flex-row-reverse items-center gap-12 mb-20 max-w-7xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
       >
-        <motion.div variants={itemVariants} className="md:w-1/2 text-left">
+        <motion.div 
+          className="md:w-1/2 text-left"
+          variants={slideInFromRight}
+        >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Our Approach and Work Ethics
+            Our Approach and Commitment to Quality
           </h2>
-          <p className="text-[#062925] text-lg mb-8">
-            At PrimeSource Consulting LLP, our approach is rooted in transparency, precision, and partnership.
-            We believe that successful recruitment isn’t just about matching resumes — it’s about understanding
-            people, business goals, and long-term potential.
-          </p>
-          <h3 className="text-2xl font-bold text-[#3A9188] mb-4">Integrity at the Core of Our Consulting</h3>
-          <ul className="list-disc list-inside text-[#062925] text-lg space-y-2">
+          <motion.p 
+            className="text-[#062925] text-lg mb-8"
+            variants={fadeIn}
+          >
+            At PrimeSource Consulting LLP, our foundation is built on a commitment to excellence. We don't just complete projects; we build lasting partnerships. Our approach combines technical expertise with a deep understanding of your business goals to deliver solutions that are not only powerful but also perfectly aligned with your vision.
+          </motion.p>
+          <motion.h3 
+            className="text-2xl font-bold text-[#3A9188] mb-4"
+            variants={fadeIn}
+          >
+            Our Guiding Principles
+          </motion.h3>
+          <motion.ul 
+            className="list-disc list-inside text-[#062925] text-lg space-y-2"
+            variants={fadeIn}
+          >
             <li>
-              <span className="font-semibold">Quality Over Quantity:</span> We focus on delivering the right fit, not just the fastest one — ensuring lasting results for both employers and job seekers.
+              <span className="font-semibold">Premium Quality, Guaranteed Results:</span> We engineer high-end solutions that deliver measurable success and a strong return on investment.
             </li>
             <li>
-              <span className="font-semibold">Relationship First:</span> Whether it’s a one-time placement or a long-term partnership, we treat every engagement with equal care and commitment.
+              <span className="font-semibold">Client-Centric Partnership:</span> Your goals are our goals. We ensure success through transparent communication and dedicated, ongoing support.
             </li>
             <li>
-              <span className="font-semibold">Integrity-Driven Processes:</span> Honesty, confidentiality, and ethical practices are at the heart of everything we do.
+              <span className="font-semibold">Innovation with Integrity:</span> We blend cutting-edge technology with unwavering ethical standards, ensuring every project is handled with professionalism.
             </li>
-          </ul>
+          </motion.ul>
         </motion.div>
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
-          <img
+        <motion.div 
+          className="md:w-1/2 flex justify-center"
+          variants={slideInFromLeft}
+        >
+          <motion.img
             src={ethicsImg}
-            alt="Work Ethics"
+            alt="Our Commitment to Quality and Ethics"
             className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
       </motion.div>
 
-      {/* Section 3: Application, Screening, and Scheduling */}
+      {/* Section 3: Premium Web & App Development */}
       <motion.div
-        // Removed md:max-w-7xl here to allow full width on desktop.
-        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20 max-w-7xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
       >
-        <motion.div variants={itemVariants} className="md:w-1/2 text-left">
+        <motion.div 
+          className="md:w-1/2 text-left"
+          variants={slideInFromLeft}
+        >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Application, Screening, and Scheduling
+            Premium Web & App Development
           </h2>
-          <p className="text-[#062925] text-lg mb-8">
-            Streamlining your hiring process: At PrimeSource Consulting LLP, we know that the success of
-            your business starts with the right people. That’s why our application screening and interview
-            scheduling services are built to simplify your recruitment process. We meticulously filter candidates
-            to match your specific needs and handle the logistics, so you can focus on selecting top-tier talent
-            without the hassle.
-          </p>
-          <CollapsibleContent title="Thorough Screening">
+          <motion.p 
+            className="text-[#062925] text-lg mb-8"
+            variants={fadeIn}
+          >
+            We transform your ideas into high-performance, scalable, and secure digital products. Our development process is designed for clarity, efficiency, and superior quality, ensuring your project is a success from conception to launch. We build premium software that works flawlessly and looks incredible.
+          </motion.p>
+          <CollapsibleContent title="Discovery & Strategy">
             <p className="text-lg text-[#062925]">
-              At PrimeSource Consulting LLP, we go beyond resumes. Our thorough screening process evaluates each candidate’s qualifications, experience, and cultural alignment to
-              ensure they meet not just the job requirements — but your business expectations. By combining in-depth assessments, background verification, and behavioral evaluations, we present only the most
-              suitable candidates, saving you time and reducing hiring risks.
+              Every great project starts with a solid plan. We work closely with you to understand your objectives, define project requirements, and create a strategic roadmap that aligns with your budget and timeline.
             </p>
           </CollapsibleContent>
-          <CollapsibleContent title="Efficient Scheduling">
+          <CollapsibleContent title="Design & Development">
             <p className="text-lg text-[#062925]">
-              At PrimeSource Consulting LLP, we understand that time is critical in
-              recruitment. Our efficient scheduling system ensures smooth coordination between candidates and
-              hiring teams — minimizing delays, reducing drop-offs, and keeping the hiring process moving
-              forward. We handle all the logistics so you can focus on making the right hiring decisions without
-              disruption.
+              Our team creates intuitive UI/UX designs and writes clean, robust code using the latest technologies. Following agile methodologies, we provide regular updates to ensure the final product exceeds your expectations.
             </p>
           </CollapsibleContent>
         </motion.div>
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
-          <img
-            src={screeningProcessImg}
-            alt="Application Screening Process"
+        <motion.div 
+          className="md:w-1/2 flex justify-center"
+          variants={slideInFromRight}
+        >
+          <motion.img
+            src={developmentProcessImg}
+            alt="Our Development Process"
             className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
       </motion.div>
 
-      {/* Section 4: EMPLOYEE ONBOARDING CHECKLIST */}
+      {/* Section 4: Expert HR & Payroll Solutions */}
       <motion.div
-        // Removed md:max-w-7xl here to allow full width on desktop.
-        className="mx-auto flex flex-col md:flex-row-reverse items-center gap-12 mb-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        className="mx-auto flex flex-col md:flex-row-reverse items-center gap-12 mb-20 max-w-7xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
       >
-        <motion.div variants={itemVariants} className="md:w-1/2 text-left">
+        <motion.div 
+          className="md:w-1/2 text-left"
+          variants={slideInFromRight}
+        >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            EMPLOYEE ONBOARDING CHECKLIST
+            Streamline Operations with HR & Payroll
           </h2>
-          <p className="text-[#062925] text-lg mb-8">
-            We ensure every new employee begins their journey fully informed and confident. From a comprehensive overview of your company values and culture to a clear understanding of their role and responsibilities, we provide all the essential information they need.
-          </p>
-          <CollapsibleContent title="Documentation">
+          <motion.p 
+            className="text-[#062925] text-lg mb-8"
+            variants={fadeIn}
+          >
+            Focus on growing your business while we handle the complexities of human resources and payroll. Our services are designed to improve efficiency, ensure compliance, and support your most valuable asset—your people.
+          </motion.p>
+          <CollapsibleContent title="Expert HR Consulting">
             <p className="text-lg text-[#062925]">
-              From identity verification and background checks to role-specific contracts and policy acknowledgments, our process ensures every document is accurate, compliant, and securely managed. This helps protect your business, supports smooth onboarding, and builds a solid foundation for employee success.
+              From talent acquisition and onboarding to policy development and compliance, our HR experts provide the strategic support you need to build a strong and effective team.
             </p>
           </CollapsibleContent>
-          <CollapsibleContent title="IT setup">
+          <CollapsibleContent title="Efficient Payroll Management">
             <p className="text-lg text-[#062925]">
-              We make sure every new hire is set up for success before they walk through the door. From system logins and email accounts to necessary hardware and software access, everything is prepared in advance. This ensures a smooth start, eliminates downtime, and allows your new team members to hit the ground running on their very first day.
-            </p>
-          </CollapsibleContent>
-          <CollapsibleContent title="Training plan">
-            <p className="text-lg text-[#062925]">
-              Every role comes with its own learning curve. That’s why we develop tailored training plans that cover job-specific tools, workflows, and expectations, ensuring your new employees build confidence and competence at a steady pace.
+              Ensure your team is paid accurately and on time, every time. We manage salary processing, tax compliance, and reporting with precision, freeing you from administrative burdens.
             </p>
           </CollapsibleContent>
         </motion.div>
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
-          <img
-            src={ethicsImg}
-            alt="Work Ethics"
+        <motion.div 
+          className="md:w-1/2 flex justify-center"
+          variants={slideInFromLeft}
+        >
+          <motion.img
+            src={hrSolutionsImg}
+            alt="HR and Payroll Solutions"
             className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
       </motion.div>
 
-      {/* Section 5: Investing in your team’s well-being (Benefits) */}
+      {/* Section 5: Strategic Digital Marketing */}
       <motion.div
-        // Removed md:max-w-7xl here to allow full width on desktop.
-        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        className="mx-auto flex flex-col md:flex-row items-center gap-12 mb-20 max-w-7xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
       >
-        <motion.div variants={itemVariants} className="md:w-1/2 text-left">
+        <motion.div 
+          className="md:w-1/2 text-left"
+          variants={slideInFromLeft}
+        >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Investing in your team’s well-being
+            Amplify Your Brand with Digital Marketing
           </h2>
-          <p className="text-[#062925] text-lg mb-8">
-            At PrimeSource Consulting LLP, we believe that taking care of our people is the foundation of long-term success. That’s why we offer a holistic benefits package designed to support the personal and professional well-being of every team member.
-          </p>
-          <CollapsibleContent title="Health and Wellness">
+          <motion.p 
+            className="text-[#062925] text-lg mb-8"
+            variants={fadeIn}
+          >
+            A great product deserves a great audience. Our digital marketing services are designed to enhance your online presence, connect with your target customers, and drive meaningful growth for your business through data-driven strategies.
+          </motion.p>
+          <CollapsibleContent title="SEO & Content Marketing">
             <p className="text-lg text-[#062925]">
-              Comprehensive medical coverage, mental health resources, and wellness programs to keep our team healthy, focused, and supported — both inside and outside of work.
+              We boost your visibility on search engines and establish you as an industry authority with high-quality, engaging content that attracts and converts your ideal customers.
             </p>
           </CollapsibleContent>
-          <CollapsibleContent title="Retirement Plans">
+          <CollapsibleContent title="Social Media & PPC Campaigns">
             <p className="text-lg text-[#062925]">
-              We help employees plan for their future with structured retirement plans, company contributions, and financial wellness tools to build long-term security.
-            </p>
-          </CollapsibleContent>
-          <CollapsibleContent title="Paid Time Off">
-            <p className="text-lg text-[#062925]">
-              Everyone needs time to recharge. We provide generous paid leave, holidays, and flexible time-off policies to support rest, family time, and personal needs.
-            </p>
-          </CollapsibleContent>
-          <CollapsibleContent title="Professional Development">
-            <p className="text-lg text-[#062925]">
-              From certifications to leadership training, we invest in ongoing learning opportunities that help our team grow their skills and advance their careers.
+              From building a community on social media to running targeted pay-per-click (PPC) advertising campaigns, we create and manage strategies that deliver a high return on investment.
             </p>
           </CollapsibleContent>
         </motion.div>
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
-          <img
-            src={onboardingBenefitsImg}
-            alt="Employee benefits"
+        <motion.div 
+          className="md:w-1/2 flex justify-center"
+          variants={slideInFromRight}
+        >
+          <motion.img
+            src={companyIntroImg}
+            alt="Digital Marketing Strategy"
             className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
       </motion.div>

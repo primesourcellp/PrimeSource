@@ -1,26 +1,26 @@
-                            import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-                            const JobDriveBanner = () => {
-                              const canvasRef = useRef(null);
-                              const mouse = useRef({ x: null, y: null });
+const JobDriveBanner = () => {
+const canvasRef = useRef(null);
+const mouse = useRef({ x: null, y: null });
 
-                              useEffect(() => {
-                                const canvas = canvasRef.current;
-                                if (!canvas) return;
+useEffect(() => {
+const canvas = canvasRef.current;
+if (!canvas) return;
 
-                                const ctx = canvas.getContext('2d');
-                                let width, height;
-                                let particles = [];
-                                let particleCount;
-                                let connectionDistance;
+const ctx = canvas.getContext('2d');
+let width, height;
+let particles = [];
+let particleCount;
+let connectionDistance;
 
-                                const setupCanvas = () => {
-                                  width = canvas.width = canvas.offsetWidth;
-                                  height = canvas.height = canvas.offsetHeight;
+const setupCanvas = () => {
+width = canvas.width = canvas.offsetWidth;
+height = canvas.height = canvas.offsetHeight;
 
-                                  if (width < 768) {
-                                    particleCount = 30;
-                                    connectionDistance = 70;
+if (width < 768) {
+particleCount = 30;
+connectionDistance = 70;
                                   } else {
                                     particleCount = 70;
                                     connectionDistance = 100;
