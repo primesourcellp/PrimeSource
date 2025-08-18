@@ -190,7 +190,8 @@ export default function About() {
             className="text-[#062925] text-lg mb-8"
             variants={fadeIn}
           >
-            PrimeSource Consulting LLP is where innovation meets execution. We are a dynamic firm dedicated to delivering premium software solutions and comprehensive business services. From crafting state-of-the-art web applications to managing your HR and payroll, we provide the tools and expertise your business needs to thrive in a competitive landscape.
+            At primesourcesllp , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
+
           </motion.p>
           <motion.h3 
             className="text-2xl font-bold text-[#3A9188] mb-4"

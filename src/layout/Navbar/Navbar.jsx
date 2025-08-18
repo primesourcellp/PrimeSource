@@ -113,8 +113,9 @@ export default function Navbar() {
                   <button onClick={() => setSoftwareOpen(!softwareOpen)} className="flex justify-between w-full text-white text-lg hover:text-[#b8e1dd] ">Software Development ▸</button>
                   {softwareOpen && (
                     <div className="pl-4 space-y-2">
-                      <NavLink to="/Services/Development" onClick={() => setOpen(false)} className="block text-white  py-3 hover:text-[#b8e1dd]">Web Development</NavLink>
-                      <NavLink to="/Services/Development" onClick={() => setOpen(false)} className="block text-white py-1 hover:text-[#b8e1dd]">WebApp Development</NavLink>
+                      <NavLink to="/Services/Development" onClick={() => setOpen(false)} className="block text-white  py-3 hover:text-[#b8e1dd]">Website</NavLink>
+                      <NavLink to="/Services/Development" onClick={() => setOpen(false)} className="block text-white  hover:text-[#b8e1dd]">Web Application</NavLink>
+                      <NavLink to="/Services/Development" onClick={() => setOpen(false)} className="block text-white py-2 hover:text-[#b8e1dd]">Mobile Application </NavLink>
                     </div>
                   )}
                 </div>
@@ -188,13 +189,19 @@ export default function Navbar() {
                             to="/Services/Web_Development"
                             className="block py-1 hover:bg-gray-100"
                           >
-                            Web Development
+                            Wesite 
                           </NavLink>
                           <NavLink
                             to="/Services/Development"
-                            className="block py-1 hover:bg-gray-100"
+                            className="block py-2 hover:bg-gray-100"
                           >
-                            WebApp Development
+                            Web Application 
+                          </NavLink>
+                          <NavLink
+                            to="/Services/Development"
+                            className="block py-2 hover:bg-gray-100"
+                          >
+                            Mobile Application In ios & android
                           </NavLink>
                         </div>
                       )}

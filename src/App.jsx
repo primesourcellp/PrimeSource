@@ -13,6 +13,7 @@ import Navbar from './layout/Navbar/Navbar.jsx';
 import Testimonial from './component/Testimonial/Testimonial';
 import JobOpening from './component/Job/Job-seeker';
 import Development from './component/Services/Development';
+import Web_Development from './component/Services/Web_Development.jsx';
 import HR_consulting from './component/Services/HR_consulting';
 import PayRoll from './component/Services/PayRoll';
 import Global from './component/Services/Global';
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Services" element={<Services />} />
           <Route path="/Services/Development" element={<Development />} />
+          <Route path="/Services/Web_Development" element={<Web_Development />} />
           <Route path="/Services/HR_consulting" element={<HR_consulting />} />
           <Route path="/Services/PayRoll" element={< PayRoll/>} />
           <Route path="/Services/Global" element={< Global/>} />

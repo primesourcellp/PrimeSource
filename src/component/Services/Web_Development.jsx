@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import webDevImg from '../../assets/web-development.png';
+import webDevImg from '../../assets/one.png';
 
 // CollapsibleContent Component
 const CollapsibleContent = ({ title, children }) => {
