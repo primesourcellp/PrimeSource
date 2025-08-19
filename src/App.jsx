@@ -19,12 +19,13 @@ import PayRoll from './component/Services/PayRoll';
 import Global from './component/Services/Global';
 import Staffing from './component/Services/Staffing';
 import Digital_Marketing from './component/Services/Digital_Marketing';
+import ScrollToTop from "./component/ScrollToTop";
 
 export default function App() {
   return (
     
     <Router>
-     
+      <ScrollToTop /> 
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -156,15 +156,15 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">Mobile</p>
-                <p className="text-gray-700">(+91)  819-090-1250 </p>
+                <p className="text-gray-700">(+91)  8190901250 </p>
               </div>
               <div>
                 <p className="text-lg font-semibold text-[#3A9188]">
                   Primesource Office
                 </p>
                 <p className="text-gray-700">
-                  10/91/K6, Nehru Nager, Surandai Road, Pavoorchatram,
-                  Kulasekarapatti, Tenkasi Tk,
+                  10/91/K6, Nehru Nager, Surandai Road, Pavoorchatram,<br/>
+                   Tenkasi Tk,
                   <br /> Tenkasi District - 627808.
                 </p>
               </div>

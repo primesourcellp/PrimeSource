@@ -20,7 +20,7 @@ export default function FloatingContact() {
     if (!isDesktop) return;
 
     const handleMouseMove = (e) => {
-      setTarget({ x: e.clientX + 20, y: e.clientY + 20 });
+      setTarget({ x: e.clientX + 50, y: e.clientY + 40 });
       setIsMoving(true);
       clearTimeout(idleTimeout.current);
       idleTimeout.current = setTimeout(() => setIsMoving(false), 800);
@@ -76,42 +76,7 @@ export default function FloatingContact() {
       </div>
 
       {/* Blast Animation */}
-      {blast && (
-        <>
-          <div
-            style={{
-              position: "fixed",
-              left: blast.x,
-              top: blast.y,
-              transform: "translate(-50%, -50%)",
-              width: "200vmax",
-              height: "200vmax",
-              borderRadius: "50%",
-              background:
-                "radial-gradient(circle, rgba(168, 196, 193, 0.45), rgba(216, 233, 231, 0.35), rgba(6,41,37,0.25), transparent 80%)",
-              animation: "blastAnim 1s cubic-bezier(0.22, 1, 0.36, 1) forwards",
-              zIndex: 9998,
-              pointerEvents: "none",
-            }}
-          />
-          {/* Ripple layer for extra impact */}
-          <div
-            style={{
-              position: "fixed",
-              left: blast.x,
-              top: blast.y,
-              transform: "translate(-50%, -50%)",
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              border: "2px solid rgba(255,255,255,0.5)",
-              animation: "rippleAnim 0.8s ease-out forwards",
-              zIndex: 9999,
-              pointerEvents: "none",
-            }}
-          />
-        </>
-      )}
+     
 
       {/* Keyframes */}
       <style>{`

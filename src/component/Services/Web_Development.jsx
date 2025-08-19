@@ -79,7 +79,7 @@ export default function WebsiteDevelopment() {
   };
 
   return (
-    <section className="bg-white py-20 px-4 md:px-12">
+    <section className="bg-white py-40 px-4 md:px-12">
       {/* Page Header */}
       <motion.div
         className="text-center mb-16"
