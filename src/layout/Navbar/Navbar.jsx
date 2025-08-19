@@ -245,15 +245,9 @@ export default function Navbar() {
                                   onClick={() => setOpen(false)} 
                                   className="block text-white py-2 hover:text-[#b8e1dd] text-md"
                                 >
-                                  SEO
+                                   Search Engine Optimization
                                 </NavLink>
-                                <NavLink 
-                                  to="/Services/Digital_Marketing/Content" 
-                                  onClick={() => setOpen(false)} 
-                                  className="block text-white py-2 hover:text-[#b8e1dd] text-md"
-                                >
-                                  Content Writing
-                                </NavLink>
+                                
                                 <NavLink 
                                   to="/Services/Digital_Marketing/Social" 
                                   onClick={() => setOpen(false)} 
@@ -266,7 +260,14 @@ export default function Navbar() {
                                   onClick={() => setOpen(false)} 
                                   className="block text-white py-2 hover:text-[#b8e1dd] text-md"
                                 >
-                                  SEM
+                                   Search Engine Optimization
+                                </NavLink>
+                                <NavLink 
+                                  to="/Services/Digital_Marketing/Content" 
+                                  onClick={() => setOpen(false)} 
+                                  className="block text-white py-2 hover:text-[#b8e1dd] text-md"
+                                >
+                                  Content writing
                                 </NavLink>
                               </motion.div>
                             )}
@@ -476,12 +477,7 @@ export default function Navbar() {
                     >
                       Search Engine Optimization
                     </NavLink>
-                    <NavLink
-                      to="/Services/Digital_Marketing/Content"
-                      className="block py-1 hover:bg-gray-100"
-                    >
-                      Content writing
-                    </NavLink>
+                   
                     <NavLink
                       to="/Services/Digital_Marketing/Social"
                       className="block py-1 hover:bg-gray-100"
@@ -493,6 +489,12 @@ export default function Navbar() {
                       className="block py-1 hover:bg-gray-100"
                     >
                       Search Engine Marketing
+                    </NavLink>
+                     <NavLink
+                      to="/Services/Digital_Marketing/Content"
+                      className="block py-1 hover:bg-gray-100"
+                    >
+                      Content writing
                     </NavLink>
                   </div>
                 )}
