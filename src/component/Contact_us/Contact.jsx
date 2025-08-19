@@ -163,9 +163,8 @@ export default function Contact() {
                   Primesource Office
                 </p>
                 <p className="text-gray-700">
-                  10/91/K6, Nehru Nager, Surandai Road, Pavoorchatram,<br/>
-                   Tenkasi Tk,
-                  <br /> Tenkasi District - 627808.
+                  10/91/K6, Nehru Nager, Surandai Road, <br/>Pavoorchatram,
+                  <br /> Tenkasi District - 627806.
                 </p>
               </div>
             </div>

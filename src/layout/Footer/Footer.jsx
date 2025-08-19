@@ -39,7 +39,7 @@ export default function Footer() {
                   <p className="text-sm mb-1">Primesource Consulting LLP</p>
                   <p className="text-sm mb-1">10/91/K6, Nehru Nager,</p>
                   <p className="text-sm mb-1">Surandai Road, Pavoorchatram,</p>
-                  <p className="text-sm">Tenkasi District - 627808</p>
+                  <p className="text-sm">Tenkasi District - 627806</p>
                 </div>
               </div>
               <div className="flex items-center">
