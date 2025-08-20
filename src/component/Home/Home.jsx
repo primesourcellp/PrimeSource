@@ -158,7 +158,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-lg text-[#062925] mb-6"
               >
-               At Primesources LLP , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
+               At Primesource, we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
 
               </motion.p>
             </div>
@@ -167,13 +167,13 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-2xl font-bold text-[#044A42] mb-4 text-center"
               >
-                Your Nationwide Talent Partner
+                Your Trusted Web Development Partner
               </motion.h3>
               <motion.p
                 variants={itemVariants}
                 className="text-lg text-[#062925] text-center italic"
               >
-                Trusted by Employers, Preferred by Professionals
+               Delivering Scalable Solutions, Driving Digital Growth.
               </motion.p>
             </div>
           </motion.div>
@@ -204,7 +204,7 @@ export default function Home() {
           >
             <motion.h2 variants={itemVariants} className="text-3xl font-bold text-[#044A42] mb-4">Your Career</motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-[#062925] mb-6">
-              Driven by Commitment, Focused on Your Success – Partner with PrimeSource Consulting LLP
+              Driven by Commitment, Focused on Your Success – Partner with Primesource Consulting
             </motion.p>
             <motion.ul variants={containerVariants} className="list-disc list-inside text-[#044A42] space-y-2 text-base">
               <motion.li variants={itemVariants}>Empowering careers and fueling business growth</motion.li>
