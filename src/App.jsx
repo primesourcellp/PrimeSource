@@ -16,7 +16,6 @@ import Development from './component/Services/Development';
 import Web_Development from './component/Services/Web_Development.jsx';
 import HR_consulting from './component/Services/HR_consulting';
 import PayRoll from './component/Services/PayRoll';
-import Global from './component/Services/Global';
 import Staffing from './component/Services/Staffing';
 import Digital_Marketing from './component/Services/Digital_Marketing';
 import ScrollToTop from "./component/ScrollToTop";
@@ -36,7 +35,6 @@ export default function App() {
           <Route path="/Services/Web_Development" element={<Web_Development />} />
           <Route path="/Services/HR_consulting" element={<HR_consulting />} />
           <Route path="/Services/PayRoll" element={< PayRoll/>} />
-          <Route path="/Services/Global" element={< Global/>} />
           <Route path="/Services/Staffing" element={< Staffing/>} />
           <Route path="/Services/Digital_Marketing" element={< Digital_Marketing/>} />
         <Route path="/Career" element={<Career />} />

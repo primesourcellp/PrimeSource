@@ -6,11 +6,11 @@ import 'aos/dist/aos.css';
 // Import local images
 import webDesignIllustration from '../../assets/two.png';
 import webAppIllustration from '../../assets/two.png';
+import mobileAppIllustration from '../../assets/two.png';
 import featureImage1 from '../../assets/two.png';
 import featureImage2 from '../../assets/two.png';
 import featureImage3 from '../../assets/two.png';
 import JobDriveBanner from '../MovingDots/dot';
-
 
 // Icons (using Heroicons)
 const CustomDesignIcon = () => (
@@ -49,6 +49,18 @@ const PerformanceIcon = () => (
   </svg>
 );
 
+const MobileIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+  </svg>
+);
+
+const AppIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+  </svg>
+);
+
 // Animation variants
 const container = {
   hidden: { opacity: 0 },
@@ -62,12 +74,22 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.7 } }
+};
+
+const slideIn = {
+  hidden: { opacity: 0, x: -50 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 const cardHover = {
   hover: { 
-    y: -5,
+    y: -8,
     transition: { 
       type: "spring", 
       stiffness: 300 
@@ -78,25 +100,68 @@ const cardHover = {
 // Reusable components
 const FeatureCard = ({ icon, title, description }) => (
   <motion.div 
-    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/30 hover:shadow-md transition-all"
     variants={item}
     whileHover="hover"
     initial="hidden"
     animate="show"
   >
-    <div className="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+    <div className="w-12 h-12 rounded-lg bg-emerald-100/50 text-emerald-700 flex items-center justify-center mb-4">
       {icon}
     </div>
     <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600">{description}</p>
+    <p className="text-gray-700">{description}</p>
+  </motion.div>
+);
+
+const ServiceCard = ({ icon, title, description, features, image, reverse = false }) => (
+  <motion.div 
+    className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 items-center bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-sm border border-white/30 p-1 mb-12`}
+    variants={item}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true, margin: "-100px" }}
+  >
+    <div className="md:w-1/2 p-8">
+      <div className="w-14 h-14 rounded-xl bg-emerald-100/50 text-emerald-700 flex items-center justify-center mb-6">
+        {icon}
+      </div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
+      <p className="text-gray-700 mb-6">{description}</p>
+      <ul className="space-y-3">
+        {features.map((feature, i) => (
+          <li key={i} className="flex items-start">
+            <svg className="w-5 h-5 text-emerald-600 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+            <span className="text-gray-700">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className="md:w-1/2">
+      <motion.img 
+        src={image} 
+        alt={title} 
+        className="w-full h-72 object-cover rounded-xl"
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.3 }}
+      />
+    </div>
   </motion.div>
 );
 
 const SectionHeader = ({ title, subtitle, center = false }) => (
-  <div className={`mb-12 ${center ? 'text-center' : ''}`}>
+  <motion.div 
+    className={`mb-12 ${center ? 'text-center' : ''}`}
+    variants={fadeIn}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true }}
+  >
     <h2 className="text-3xl font-bold text-gray-900 mb-3">{title}</h2>
-    {subtitle && <p className="text-lg text-gray-600 max-w-3xl mx-auto">{subtitle}</p>}
-  </div>
+    {subtitle && <p className="text-lg text-gray-700 max-w-3xl mx-auto">{subtitle}</p>}
+  </motion.div>
 );
 
 export default function WebSolutionsPage() {
@@ -109,107 +174,110 @@ export default function WebSolutionsPage() {
   }, []);
 
   return (
-    <div className="bg-gray-50">
-      {/* Hero Section - Simplified without image */}
-      <section className="relative h-screen bg-gradient-to-r from-gray-900 to-emerald-900">
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <motion.div
+    <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen">
+      {/* Hero Section */}
+      <section className="relative min-h-screen overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200/40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-cyan-200/40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-teal-200/40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-70 md:py-70 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Modern Web Solutions for <span className="text-emerald-400">Your Business</span>
-              </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                We design and develop high-performance websites and web applications that drive results.
-              </p>
-              <div className="flex gap-4 justify-center">
-                <motion.button 
-            className="bg-white hover:bg-gray-100 text-emerald-800 font-medium py-3 px-8 rounded-lg transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start Your Project Today
-          </motion.button>
-              </div>
+              Modern <span className="text-emerald-600">Digital Solutions</span> for Your Business
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-gray-700 max-w-3xl mx-auto mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              We design and develop high-performance websites, web applications, and mobile apps that drive results.
+            </motion.p>
+            <motion.div 
+              className="flex flex-wrap gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <motion.button 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Start Your Project
+              </motion.button>
+              <motion.button 
+                className="bg-white/90 hover:bg-white text-emerald-600 border border-emerald-600 font-medium py-3 px-8 rounded-lg transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View Our Work
+              </motion.button>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
-         <JobDriveBanner />
-        
+        <JobDriveBanner />
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 px-6 lg:px-8 bg-white">
+      <section className="py-20 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionHeader 
-            title="Our Web Solutions" 
-            subtitle="Comprehensive digital solutions tailored to your business needs" 
+            title="Our Digital Solutions" 
+            subtitle="Comprehensive services tailored to your business needs" 
             center
           />
           
           <motion.div 
-            className="grid md:grid-cols-2 gap-8"
+            className="space-y-16"
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.div variants={item} className="bg-gray-50 rounded-xl overflow-hidden">
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Website Development</h3>
-                <p className="text-gray-600 mb-6">
-                  Beautiful, high-converting websites designed to showcase your brand and engage your audience.
-                </p>
-                <ul className="space-y-3">
-                  {['Custom designs', 'Mobile-first approach', 'SEO optimized', 'Fast performance'].map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <svg className="w-5 h-5 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <img 
-                src={webDesignIllustration} 
-                alt="Website development" 
-                className="w-full h-64 object-cover"
-              />
-            </motion.div>
-
-            <motion.div variants={item} className="bg-gray-50 rounded-xl overflow-hidden">
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Web Applications</h3>
-                <p className="text-gray-600 mb-6">
-                  Custom web applications that solve business challenges and streamline operations.
-                </p>
-                <ul className="space-y-3">
-                  {['Custom business logic', 'Database integration', 'User authentication', 'API connections'].map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <svg className="w-5 h-5 text-emerald-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <img 
-                src={webAppIllustration} 
-                alt="Web application development" 
-                className="w-full h-64 object-cover"
-              />
-            </motion.div>
+            <ServiceCard 
+              icon={<CustomDesignIcon />}
+              title="Website Development"
+              description="Beautiful, high-converting websites designed to showcase your brand and engage your audience."
+              features={['Custom designs', 'Mobile-first approach', 'SEO optimized', 'Fast performance']}
+              image={webDesignIllustration}
+            />
+            
+            <ServiceCard 
+              icon={<AppIcon />}
+              title="Web Application Development"
+              description="Custom web applications that solve business challenges and streamline operations."
+              features={['Custom business logic', 'Database integration', 'User authentication', 'API connections']}
+              image={webAppIllustration}
+              reverse={true}
+            />
+            
+            <ServiceCard 
+              icon={<MobileIcon />}
+              title="Mobile Application Development"
+              description="Native and cross-platform mobile apps for iOS and Android that deliver exceptional user experiences."
+              features={['iOS & Android development', 'Cross-platform solutions', 'App store optimization', 'Push notifications']}
+              image={mobileAppIllustration}
+            />
           </motion.div>
         </div>
+        
       </section>
 
       {/* Website Features */}
-      <section className="py-20 px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionHeader 
             title="Website Development Features" 
@@ -222,7 +290,7 @@ export default function WebSolutionsPage() {
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             <FeatureCard 
               icon={<CustomDesignIcon />}
@@ -259,7 +327,7 @@ export default function WebSolutionsPage() {
       </section>
 
       {/* Web App Features */}
-      <section className="py-20 px-6 lg:px-8 bg-white">
+      <section className="py-20 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionHeader 
             title="Web Application Capabilities" 
@@ -268,9 +336,14 @@ export default function WebSolutionsPage() {
           />
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
+            <motion.div
+              variants={slideIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Process Automation</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-700 mb-6">
                 Streamline operations with custom applications that automate repetitive tasks and reduce errors.
               </p>
               
@@ -281,23 +354,36 @@ export default function WebSolutionsPage() {
                   "Custom CRM solutions",
                   "Data collection and reporting"
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start">
+                  <motion.div 
+                    key={i} 
+                    className="flex items-start"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                  >
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-5 h-5 rounded-full bg-emerald-100/70 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
                     </div>
                     <p className="ml-3 text-gray-700">{item}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
             
-            <div>
+            <motion.div
+              variants={slideIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Customer-Facing Applications</h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-700 mb-6">
                 Create powerful tools for your customers that enhance engagement and provide value.
               </p>
               
@@ -308,37 +394,140 @@ export default function WebSolutionsPage() {
                   "Interactive service tools",
                   "Real-time collaboration"
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start">
+                  <motion.div 
+                    key={i} 
+                    className="flex items-start"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 + 0.2 }}
+                    viewport={{ once: true }}
+                  >
                     <div className="flex-shrink-0 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="w-5 h-5 rounded-full bg-emerald-100/70 flex items-center justify-center">
+                        <svg className="w-3 h-3 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       </div>
                     </div>
                     <p className="ml-3 text-gray-700">{item}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile App Section */}
+      <section className="py-20 px-6 lg:px-8 bg-gradient-to-br from-emerald-100/50 to-cyan-100/50 rounded-3xl mx-4 lg:mx-8">
+        <div className="max-w-7xl mx-auto">
+            
+          <SectionHeader 
+            title="Mobile Application Development" 
+            subtitle="Reach your audience on any device with native and cross-platform solutions" 
+            center
+          />
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">iOS & Android Development</h3>
+              <p className="text-gray-700 mb-6">
+                We create mobile experiences that feel native to each platform while maintaining a consistent brand identity.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-white/30">
+                  <h4 className="font-semibold text-gray-900 mb-2">iOS Apps</h4>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Swift & Objective-C</li>
+                    <li>• Apple Design Guidelines</li>
+                    <li>• App Store Optimization</li>
+                    <li>• iPhone & iPad Support</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-white/30">
+                  <h4 className="font-semibold text-gray-900 mb-2">Android Apps</h4>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Kotlin & Java</li>
+                    <li>• Material Design</li>
+                    <li>• Google Play Optimization</li>
+                    <li>• Multi-device Support</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="flex justify-center"
+            >
+              <div className="relative">
+                <div className="absolute -inset-4 bg-emerald-200/40 rounded-3xl blur-lg opacity-70"></div>
+                <img 
+                  src={mobileAppIllustration} 
+                  alt="Mobile app development" 
+                  className="relative rounded-2xl shadow-lg w-full max-w-md"
+                />
+              </div>
+            </motion.div>
+            
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 lg:px-8 bg-gradient-to-r from-emerald-700 to-emerald-900 text-white">
+      <section className="py-20 px-6 lg:px-8 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white rounded-4xl mx-4 lg:mx-8 mt-12 mb-6 ">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to transform your digital presence?</h2>
-          <p className="text-xl text-emerald-100 mb-8">
-            Whether you need a stunning website or a powerful web application, we have the expertise to bring your vision to life.
-          </p>
-          <motion.button 
-            className="bg-white hover:bg-gray-100 text-emerald-800 font-medium py-3 px-8 rounded-lg transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            Start Your Project Today
-          </motion.button>
+            Ready to transform your digital presence?
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-emerald-100 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Whether you need a stunning website, a powerful web application, or a mobile app, we have the expertise to bring your vision to life.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.button 
+              className="bg-white hover:bg-gray-100 text-emerald-800 font-medium py-3 px-8 rounded-lg transition-colors mr-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Project
+            </motion.button>
+            <motion.button 
+              className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-3 px-8 rounded-lg transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Schedule a Consultation
+            </motion.button>
+          </motion.div>
+          
         </div>
       </section>
     </div>

@@ -115,7 +115,7 @@ const CollapsibleContent = ({ title, children }) => {
 
 const WhatWeDoList = () => {
   const items = [
-    "Premium Web & App Development",
+    "Premium Software Development",
     "Strategic Digital Marketing",
     "Expert HR Consulting",
     "Efficient Payroll Management",
@@ -183,18 +183,18 @@ export default function About() {
           className="md:w-1/2 text-left"
           variants={slideInFromLeft}
         >
-          <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Your Partner in Digital Transformation and Business Excellence.
+          <h2 className="text-3xl font-bold text-[#044A42] mb-6 leading-tight">
+           Your Trusted Web Development Partner -Delivering Scalable Solutions, Driving Digital Growth.
           </h2>
           <motion.p 
             className="text-[#062925] text-lg mb-8"
             variants={fadeIn}
           >
-            At primesourcesllp , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
+            At Primesource , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
 
           </motion.p>
           <motion.h3 
-            className="text-2xl font-bold text-[#3A9188] mb-4"
+            className="text-2xl font-bold text-[#044A42] mb-4"
             variants={fadeIn}
           >
             Our Core Services
@@ -227,35 +227,41 @@ export default function About() {
           className="md:w-1/2 text-left"
           variants={slideInFromRight}
         >
-          <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Our Approach and Commitment to Quality
+          <h2 className="text-3xl font-bold text-[#044A42] mb-6 leading-tight">
+           Why Primesource Consulting Stands Out in Web Applications Development
           </h2>
           <motion.p 
             className="text-[#062925] text-lg mb-8"
             variants={fadeIn}
           >
-            At PrimeSource Consulting LLP, our foundation is built on a commitment to excellence. We don't just complete projects; we build lasting partnerships. Our approach combines technical expertise with a deep understanding of your business goals to deliver solutions that are not only powerful but also perfectly aligned with your vision.
+          At Primesource, we create more than web application — we design complete digital experiences. Our team powers every project with innovation and expertise, delivering solutions that enable businesses to grow, scale, and achieve global success.
           </motion.p>
-          <motion.h3 
-            className="text-2xl font-bold text-[#3A9188] mb-4"
-            variants={fadeIn}
-          >
-            Our Guiding Principles
-          </motion.h3>
-          <motion.ul 
-            className="list-disc list-inside text-[#062925] text-lg space-y-2"
-            variants={fadeIn}
-          >
-            <li>
-              <span className="font-semibold">Premium Quality, Guaranteed Results:</span> We engineer high-end solutions that deliver measurable success and a strong return on investment.
-            </li>
-            <li>
-              <span className="font-semibold">Client-Centric Partnership:</span> Your goals are our goals. We ensure success through transparent communication and dedicated, ongoing support.
-            </li>
-            <li>
-              <span className="font-semibold">Innovation with Integrity:</span> We blend cutting-edge technology with unwavering ethical standards, ensuring every project is handled with professionalism.
-            </li>
-          </motion.ul>
+        
+         <CollapsibleContent title="Creative Excellence">
+            <p className="text-lg text-[#062925]">
+              At Primesource, we go beyond traditional web development by delivering high-impact digital solutions that push boundaries. Every project is designed to drive measurable change, combining creativity, technology, and innovation to build experiences that stand out.
+            </p>
+          </CollapsibleContent>
+         <CollapsibleContent title="Success-Focused Strategy">
+            <p className="text-lg text-[#062925]">
+              Your success is our mission. With strategic planning, tailored development, and performance-focused solutions, we help your business scale faster and reach new markets with confidence.
+            </p>
+          </CollapsibleContent>
+         <CollapsibleContent title="Worldwide Expertise, Local Value">
+            <p className="text-lg text-[#062925]">
+              As a globally connected firm, we bring worldwide expertise to every project. From startups to enterprises, we collaborate across industries and geographies, ensuring your digital presence resonates with audiences everywhere.
+            </p>
+          </CollapsibleContent>
+         <CollapsibleContent title="Strong Partnerships">
+            <p className="text-lg text-[#062925]">
+            We believe the best results come from teamwork. Our open and transparent process ensures your ideas are valued, your voice is heard, and your vision is transformed into powerful digital solutions.
+            </p>
+          </CollapsibleContent>
+         <CollapsibleContent title="Evolving with Technology">
+            <p className="text-lg text-[#062925]">
+             Technology evolves rapidly — and so do we. At Primesource Consulting LLP, we stay ahead with the latest frameworks, tools, and best practices, ensuring your business always benefits from cutting-edge web development.
+            </p>
+          </CollapsibleContent>
         </motion.div>
         <motion.div 
           className="md:w-1/2 flex justify-center"
@@ -407,6 +413,29 @@ export default function About() {
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </motion.div>
+      </motion.div>
+
+      {/* New Section: Career Call-to-Action */}
+      <motion.div
+        className="mx-auto text-center py-16 max-w-4xl"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scrollVariants}
+      >
+        <motion.h2
+          className="text-4xl font-bold text-[#044A42] mb-8"
+          variants={fadeIn}
+        >
+          Join Our Team
+        </motion.h2>
+        <motion.p
+          className="text-2xl text-[#062925] font-medium leading-relaxed"
+          variants={fadeIn}
+          transition={{ delay: 0.2 }}
+        >
+          Join Primesource Consulting LLP and build a career that challenges you, supports you, and takes you further than you imagined.
+        </motion.p>
       </motion.div>
     </section>
   );

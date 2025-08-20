@@ -19,6 +19,7 @@ import heroBg from '../../assets/intro.jpg';
 import JobDriveBanner from '../MovingDots/dot';
 import FollowCursorContact from '../Animations/Smoke';
 import { Link } from "react-router-dom";
+import ServicesSection from '../ServicesCompo/servicecompo'
 
 // Main Home component
 export default function Home() {
@@ -158,7 +159,7 @@ export default function Home() {
                 variants={itemVariants}
                 className="text-lg text-[#062925] mb-6"
               >
-               At Primesource, we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
+              At Primesource , we are trusted technology partner committed to driving digital success. Built on a foundation of innovation, excellence, and integrity, we deliver end-to-end IT development and consulting services that empower businesses to thrive in a rapidly changing digital world.
 
               </motion.p>
             </div>
@@ -238,41 +239,57 @@ export default function Home() {
             viewport={{ once: true }}
             data-aos="fade-right"
           >
-            <h2 className="text-3xl font-bold text-[#044A42] mb-4">Why Choose Us</h2>
+            <h2 className="text-3xl font-bold text-[#044A42] mb-4">Why Primesource Consulting Stands Out in Software Development </h2>
             <p className="text-lg text-[#062925] mb-6">
-              At PrimeSource Consulting LLP, we go beyond recruitment — we empower careers and fuel business growth. With a strong presence across India, organizations and professionals alike trust us for our commitment to excellence, integrity, and results-driven hiring solutions.
+          At Primesource Consulting LLP, we go beyond recruitment — we empower careers and fuel business growth. With a strong presence across India, organizations and professionals alike trust us for our commitment to excellence, integrity, and results-driven hiring solutions.
             </p>
-            <ul className="list-disc list-inside text-[#044A42] space-y-2 text-base">
-              <motion.li
-                whileHover={{ x: 5 }}
-                className="hover:text-[#3A9188] transition"
-              >
-                <span className="font-semibold">Specific Expertise:</span> Deep domain knowledge across IT, data migration, digital marketing, HR consulting, contract, staffing, and more
-              </motion.li>
-              <motion.li
-                whileHover={{ x: 5 }}
-                className="hover:text-[#3A9188] transition"
-              >
-                <span className="font-semibold">Quality Over Quantity:</span> Precision hiring, delivering only the most relevant and pre-screened candidates
-              </motion.li>
-              <motion.li
-                whileHover={{ x: 5 }}
-                className="hover:text-[#3A9188] transition"
-              >
-                <span className="font-semibold">Integrity-Driven Partnerships:</span> Trust and transparency for long-term relationships
-              </motion.li>
-              <motion.li
-                whileHover={{ x: 5 }}
-                className="hover:text-[#3A9188] transition"
-              >
-                <span className="font-semibold">Proven Track Record:</span> Trusted by hundreds of companies and thousands of professionals
-              </motion.li>
-              <motion.li
-                whileHover={{ x: 5 }}
-                className="hover:text-[#3A9188] transition"
-              >
-                <span className="font-semibold">End-to-End Recruitment Support:</span> From sourcing to onboarding, we manage the entire hiring process
-              </motion.li>
+            <ul className="list-none text-[#044A42] space-y-4 text-base">
+        <motion.li
+          whileHover={{ x: 5 }}
+          className="flex items-start gap-2 hover:text-[#3A9188] transition"
+        >
+          <span className="text-[#3A9188] mt-1">★</span>
+          <span>
+            <span className="font-bold">Specific Expertise :</span> Our consultants bring deep domain knowledge across sectors including IT, digital marketing, HR consulting, Payroll services and more — ensuring tailored solutions for every hiring need.
+          </span>
+        </motion.li>
+                <motion.li
+          whileHover={{ x: 5 }}
+          className="flex items-start gap-2 hover:text-[#3A9188] transition"
+        >
+          <span className="text-[#3A9188] mt-1">★</span>
+          <span>
+            <span className="font-bold">Quality Over Quantity: :</span>  We focus on precision hiring, delivering only the most relevant and pre-screened candidates to save your time and boost recruitment efficiency.
+          </span>
+        </motion.li>
+                <motion.li
+          whileHover={{ x: 5 }}
+          className="flex items-start gap-2 hover:text-[#3A9188] transition"
+        >
+          <span className="text-[#3A9188] mt-1">★</span>
+          <span>
+            <span className="font-bold">Integrity-Driven Partnerships :</span> Built on a foundation of trust and transparency, we value long-term relationships with both employers and job seekers.
+          </span>
+        </motion.li>
+                <motion.li
+          whileHover={{ x: 5 }}
+          className="flex items-start gap-2 hover:text-[#3A9188] transition"
+        >
+          <span className="text-[#3A9188] mt-1">★</span>
+          <span>
+            <span className="font-bold">Proven Track Record :</span>  Hundreds of companies and thousands of professionals have trusted Primesource for reliable, results-driven recruitment services.
+          </span>
+        </motion.li> 
+
+                <motion.li
+          whileHover={{ x: 5 }}
+          className="flex items-start gap-2 hover:text-[#3A9188] transition"
+        >
+          <span className="text-[#3A9188] mt-1">★</span>
+          <span>
+            <span className="font-bold">End-to-End Recruitment Support :</span>From sourcing to onboarding, we manage the entire hiring process — letting you focus on your core business while we handle the talent.
+          </span>
+        </motion.li>              
             </ul>
           </motion.div>
           <div className="md:w-1/2 flex justify-center">
@@ -290,124 +307,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Our Services Section */}
-      <div
-        className="w-full mb-12 px-4 sm:px-6 lg:px-8"
-        data-aos="fade-up"
-      >
-        <h2 className="text-3xl font-bold text-[#044A42] mb-8 text-center">Our Services</h2>
-        <motion.div
-          className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-              data-aos="fade-right"
->
-            <img src={appImg} alt="Contract Staffing" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Contract Staffing</h3>
-            <p className="text-[#062925] text-center">Flexible workforce solutions for your business needs.</p>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="200"
-          >
-            <img src={webImg} alt="Global Sourcing" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Global Sourcing</h3>
-            <p className="text-[#062925] text-center">Access top talent from around the world.</p>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="400"
-          >
-            <img src={userImg} alt="Payroll Management" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Payroll Management</h3>
-            <p className="text-[#062925] text-center">Efficient and accurate payroll services.</p>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mt-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="600"
-          >
-            <img src={meetingImg} alt="HR Consulting" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">HR Consulting</h3>
-            <p className="text-[#062925] text-center">Expert HR advice and solutions for your organization.</p>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="800"
-          >
-            <img src={appImg} alt="SAP Consulting" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">SAP Consulting</h3>
-            <p className="text-[#062925] text-center">Specialized SAP solutions for business transformation.</p>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="1000"
-          >
-            <img src={webImg} alt="Digital Marketing" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Digital Marketing</h3>
-            <p className="text-[#062925] text-center">Grow your brand with our digital marketing expertise.</p>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 mt-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="1200"
-          >
-            <img src={userImg} alt="Data Migration" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Data Migration</h3>
-            <p className="text-[#062925] text-center">Seamless migration of your business data.</p>
-          </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="bg-[#B8E1DD] p-8 rounded-xl shadow-lg flex flex-col items-center hover:scale-105 transition"
-            whileHover={{ y: -10 }}
-            data-aos="zoom-in-up"
-            data-aos-delay="1400"
-          >
-            <img src={webImg} alt="Web Development" className="w-24 h-24 mb-4" />
-            <h3 className="text-xl font-semibold text-[#3A9188] mb-2">Web Development & Application</h3>
-            <p className="text-[#062925] text-center">Custom web solutions and applications for your business.</p>
-          </motion.div>
-        </motion.div>
-      </div>
+     {/* Our Services Section */}
+<ServicesSection />
 
       {/* Client Logos Marquee Section */}
       <div className="w-full my-20 py-12 bg-white rounded-2xl shadow-lg overflow-hidden px-4 sm:px-6 lg:px-8">
