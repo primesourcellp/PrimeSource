@@ -8,23 +8,20 @@ import semImage from '../../assets/five.png';
 import contentImage from '../../assets/five.png';
 import digitalMarketingHero from '../../assets/five.png';
 
-
-// ✨ ENHANCED: Animation variants are refined for a more polished and fluid feel.
-// Added a subtle scale effect for a "pop-in" feel.
-
+// Animation variants
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Faster stagger for a snappier feel
+      staggerChildren: 0.1,
       delayChildren: 0.1,
     }
   }
 };
 
 const itemFromLeft = {
-  hidden: { opacity: 0, x: -50, scale: 0.95 }, // Increased distance and added scale
+  hidden: { opacity: 0, x: -50, scale: 0.95 },
   show: {
     opacity: 1,
     x: 0,
@@ -39,7 +36,7 @@ const itemFromLeft = {
 };
 
 const itemFromRight = {
-  hidden: { opacity: 0, x: 50, scale: 0.95 }, // Increased distance and added scale
+  hidden: { opacity: 0, x: 50, scale: 0.95 },
   show: {
     opacity: 1,
     x: 0,
@@ -54,7 +51,7 @@ const itemFromRight = {
 };
 
 const itemFromTop = {
-  hidden: { opacity: 0, y: -50, scale: 0.95 }, // Added distance and scale
+  hidden: { opacity: 0, y: -50, scale: 0.95 },
   show: {
     opacity: 1,
     y: 0,
@@ -69,7 +66,7 @@ const itemFromTop = {
 };
 
 const itemFromBottom = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 }, // Added distance and scale
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: {
     opacity: 1,
     y: 0,
@@ -95,15 +92,13 @@ const fadeIn = {
   }
 };
 
-// --- Reusable Components ---
-
+// Reusable Components
 const ServiceIcon = ({ emoji, color }) => (
   <div className={`w-14 h-14 rounded-xl ${color} flex items-center justify-center text-2xl`}>
     {emoji}
   </div>
 );
 
-// ✨ ENHANCED: ServiceCard now uses whileInView for cleaner implementation.
 const ServiceCard = ({ icon, title, description, features, image, animationDirection }) => {
   const animationVariant = animationDirection === 'left' ? itemFromLeft : itemFromRight;
 
@@ -113,7 +108,7 @@ const ServiceCard = ({ icon, title, description, features, image, animationDirec
       variants={animationVariant}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -150px 0px" }} // Triggers animation sooner
+      viewport={{ once: true, margin: "0px 0px -150px 0px" }}
     >
       <div className="md:w-1/2 p-5 md:p-8 w-full order-2 md:order-1">
         {icon}
@@ -122,7 +117,7 @@ const ServiceCard = ({ icon, title, description, features, image, animationDirec
         <ul className="space-y-2">
           {features.map((feature, i) => (
             <li key={i} className="flex items-start">
-              <span className="text-blue-600 mr-2.5 flex-shrink-0 mt-1">✓</span>
+              <span className="text-emerald-600 mr-2.5 flex-shrink-0 mt-1">✓</span>
               <span className="text-gray-700 text-sm">{feature}</span>
             </li>
           ))}
@@ -141,7 +136,6 @@ const ServiceCard = ({ icon, title, description, features, image, animationDirec
     </motion.div>
   );
 };
-
 
 const FeatureCard = ({ icon, title, description }) => (
   <motion.div
@@ -168,8 +162,7 @@ const SectionHeader = ({ title, subtitle, center = false }) => (
   </motion.div>
 );
 
-// --- Main Page Component ---
-
+// Main Page Component
 export default function DigitalMarketingPage() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -181,12 +174,12 @@ export default function DigitalMarketingPage() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 min-h-screen overflow-x-hidden font-sans">
+    <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen overflow-x-hidden font-sans">
       {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden flex items-center">
         {/* Background Blobs */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-5 w-72 h-72 bg-blue-200/40 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+          <div className="absolute top-10 left-5 w-72 h-72 bg-emerald-200/40 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
           <div className="absolute top-20 right-5 w-72 h-72 bg-cyan-200/40 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute bottom-10 left-20 w-72 h-72 bg-teal-200/40 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
@@ -203,7 +196,7 @@ export default function DigitalMarketingPage() {
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight"
               variants={itemFromBottom}
             >
-              Amplify Your <span className="text-blue-600">Digital Presence</span>
+              Amplify Your <span className="text-emerald-600">Digital Presence</span>
             </motion.h1>
             <motion.p
               className="text-base sm:text-lg text-gray-700 max-w-xl"
@@ -216,7 +209,7 @@ export default function DigitalMarketingPage() {
               variants={itemFromBottom}
             >
               <motion.button
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg shadow-blue-500/20"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg shadow-emerald-500/20"
                 whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -224,7 +217,7 @@ export default function DigitalMarketingPage() {
                 Get Started
               </motion.button>
               <motion.button
-                className="bg-white/90 hover:bg-white text-blue-600 border border-blue-200 font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg shadow-gray-500/10"
+                className="bg-white/90 hover:bg-white text-emerald-600 border border-emerald-200 font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg shadow-gray-500/10"
                 whileHover={{ scale: isMobile ? 1 : 1.05, y: isMobile ? 0 : -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -241,8 +234,7 @@ export default function DigitalMarketingPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: "spring", damping: 20, stiffness: 80, delay: 0.2 }}
           >
-            <div className="absolute -inset-2 md:-inset-4 bg-blue-300/20 rounded-3xl blur-xl"></div>
-            {/* ✨ ENHANCED: Smoother, more subtle floating animation */}
+            <div className="absolute -inset-2 md:-inset-4 bg-emerald-300/20 rounded-3xl blur-xl"></div>
             <motion.div
               animate={{
                 y: isMobile ? 0 : [0, -10, 0],
@@ -269,7 +261,7 @@ export default function DigitalMarketingPage() {
                   transition={{ type: "spring", damping: 12, stiffness: 200, delay: 0.8 }}
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
-                  <div className="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xl">🔍</div>
+                  <div className="w-9 h-9 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-xl">🔍</div>
                 </motion.div>
                 <motion.div
                   className="absolute -bottom-4 -right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-white/30"
@@ -278,7 +270,7 @@ export default function DigitalMarketingPage() {
                   transition={{ type: "spring", damping: 12, stiffness: 200, delay: 1.0 }}
                   whileHover={{ scale: 1.1, rotate: -5 }}
                 >
-                  <div className="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xl">📈</div>
+                  <div className="w-9 h-9 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-600 text-xl">📈</div>
                 </motion.div>
               </>
             )}
@@ -296,7 +288,7 @@ export default function DigitalMarketingPage() {
           />
           <div className="space-y-12 md:space-y-16">
             <ServiceCard
-              icon={<ServiceIcon emoji="🔍" color="bg-blue-100 text-blue-700" />}
+              icon={<ServiceIcon emoji="🔍" color="bg-emerald-100 text-emerald-700" />}
               title="Search Engine Optimization (SEO)"
               description="Improve your website's visibility and drive organic traffic with our comprehensive SEO strategies."
               features={['Keyword Research & Analysis', 'On-Page & Technical SEO', 'Content Strategy', 'Link Building', 'Local SEO', 'Performance Reporting']}
@@ -304,7 +296,7 @@ export default function DigitalMarketingPage() {
               animationDirection="left"
             />
             <ServiceCard
-              icon={<ServiceIcon emoji="💬" color="bg-purple-100 text-purple-700" />}
+              icon={<ServiceIcon emoji="💬" color="bg-cyan-100 text-cyan-700" />}
               title="Social Media Marketing (SMM)"
               description="Build brand awareness, engage your audience, and drive conversions through strategic social media campaigns."
               features={['Strategy Development', 'Content Creation & Curation', 'Community Management', 'Paid Social Advertising', 'Influencer Partnerships', 'Analytics & Reporting']}
@@ -312,7 +304,7 @@ export default function DigitalMarketingPage() {
               animationDirection="right"
             />
             <ServiceCard
-              icon={<ServiceIcon emoji="📈" color="bg-green-100 text-green-700" />}
+              icon={<ServiceIcon emoji="📈" color="bg-teal-100 text-teal-700" />}
               title="Search Engine Marketing (SEM)"
               description="Drive immediate traffic and conversions with targeted paid search campaigns across major search engines."
               features={['PPC Campaign Management', 'Keyword & Bidding Strategy', 'Ad Copy Creation & A/B Testing', 'Landing Page Optimization', 'Conversion Rate Optimization', 'ROI Tracking']}
@@ -332,14 +324,13 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Our Approach Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-100/60 to-cyan-100/60 rounded-3xl mx-2 md:mx-4 lg:mx-8">
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-100/60 to-cyan-100/60 rounded-3xl mx-2 md:mx-4 lg:mx-8">
         <div className="max-w-7xl mx-auto w-full">
           <SectionHeader
             title="Our Strategic Approach"
             subtitle="A data-driven, six-step process that ensures clarity, execution, and measurable results for your campaigns."
             center
           />
-          {/* ✨ ENHANCED: Applied container stagger animation to this grid for a smooth, sequential reveal. */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={container}
@@ -360,7 +351,7 @@ export default function DigitalMarketingPage() {
                 className="bg-white/80 backdrop-blur-md p-6 rounded-xl border border-white/40"
                 variants={itemFromBottom}
               >
-                <div className="text-3xl font-bold text-blue-600 mb-4">{item.number}</div>
+                <div className="text-3xl font-bold text-emerald-600 mb-4">{item.number}</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-700 text-sm">{item.description}</p>
               </motion.div>
@@ -384,19 +375,19 @@ export default function DigitalMarketingPage() {
             whileInView="show"
             viewport={{ once: true, margin: "0px 0px -150px 0px" }}
           >
-            <FeatureCard icon={<ServiceIcon emoji="📊" color="bg-indigo-100 text-indigo-700" />} title="Analytics & Reporting" description="Gain actionable insights into your performance with comprehensive analytics and detailed reporting." />
-            <FeatureCard icon={<ServiceIcon emoji="🎯" color="bg-red-100 text-red-700" />} title="Marketing Strategy" description="Develop a complete digital marketing roadmap aligned perfectly with your business objectives." />
-            <FeatureCard icon={<ServiceIcon emoji="✉️" color="bg-sky-100 text-sky-700" />} title="Email Marketing" description="Nurture leads and engage customers with targeted email campaigns that drive action." />
+            <FeatureCard icon={<ServiceIcon emoji="📊" color="bg-emerald-100 text-emerald-700" />} title="Analytics & Reporting" description="Gain actionable insights into your performance with comprehensive analytics and detailed reporting." />
+            <FeatureCard icon={<ServiceIcon emoji="🎯" color="bg-cyan-100 text-cyan-700" />} title="Marketing Strategy" description="Develop a complete digital marketing roadmap aligned perfectly with your business objectives." />
+            <FeatureCard icon={<ServiceIcon emoji="✉️" color="bg-teal-100 text-teal-700" />} title="Email Marketing" description="Nurture leads and engage customers with targeted email campaigns that drive action." />
             <FeatureCard icon={<ServiceIcon emoji="🔄" color="bg-emerald-100 text-emerald-700" />} title="Conversion Rate Optimization" description="Improve your website's ability to convert visitors into customers through data-driven A/B testing." />
-            <FeatureCard icon={<ServiceIcon emoji="🌟" color="bg-yellow-100 text-yellow-700" />} title="Influencer Marketing" description="Leverage the power of influencers to expand your reach and build authentic brand credibility." />
-            <FeatureCard icon={<ServiceIcon emoji="🔁" color="bg-rose-100 text-rose-700" />} title="Remarketing Campaigns" description="Re-engage visitors who didn't convert with targeted ads across multiple platforms to boost ROI." />
+            <FeatureCard icon={<ServiceIcon emoji="🌟" color="bg-amber-100 text-amber-700" />} title="Influencer Marketing" description="Leverage the power of influencers to expand your reach and build authentic brand credibility." />
+            <FeatureCard icon={<ServiceIcon emoji="🔁" color="bg-cyan-100 text-cyan-700" />} title="Remarketing Campaigns" description="Re-engage visitors who didn't convert with targeted ads across multiple platforms to boost ROI." />
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24">
-        <div className="max-w-5xl mx-auto text-center w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-3xl p-8 sm:p-12 md:p-16 mx-4">
+        <div className="max-w-5xl mx-auto text-center w-full bg-gradient-to-r from-emerald-600 to-cyan-600 text-white rounded-3xl p-8 sm:p-12 md:p-16 mx-4">
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -410,7 +401,7 @@ export default function DigitalMarketingPage() {
               Ready to Transform Your Digital Marketing?
             </motion.h2>
             <motion.p
-              className="text-base sm:text-lg text-blue-100 mb-8 max-w-2xl mx-auto"
+              className="text-base sm:text-lg text-emerald-100 mb-8 max-w-2xl mx-auto"
               variants={itemFromBottom}
             >
               Let's create a customized strategy that drives growth and delivers the results you deserve.
@@ -420,7 +411,7 @@ export default function DigitalMarketingPage() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <motion.button
-                className="bg-white hover:bg-gray-100 text-blue-700 font-semibold py-3 px-7 rounded-lg transition-colors duration-300 shadow-lg"
+                className="bg-white hover:bg-gray-100 text-emerald-700 font-semibold py-3 px-7 rounded-lg transition-colors duration-300 shadow-lg"
                 whileHover={{ scale: isMobile ? 1 : 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
