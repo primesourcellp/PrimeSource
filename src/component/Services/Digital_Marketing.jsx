@@ -245,7 +245,7 @@ export default function DigitalMarketingPage() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-teal-200/40 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 grid md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-40 md:py-40 grid md:grid-cols-2 gap-8 md:gap-12 items-center w-full">
           {/* Text Content - Animated from left */}
           <motion.div
             className="space-y-6 md:space-y-8"
