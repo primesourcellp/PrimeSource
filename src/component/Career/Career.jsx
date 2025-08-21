@@ -155,7 +155,7 @@ export default function JobOpening() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F6F6] py-32 px-4 sm:px-6 lg:px-8">
+    <div className=" py-32 px-4 sm:px-6 lg:px- bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <motion.h1
           className="text-4xl sm:text-5xl font-extrabold text-center text-[#044A42] mb-4"

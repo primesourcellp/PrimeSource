@@ -53,7 +53,7 @@ export default function Contact() {
 
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 py-40"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 py-40 "
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",

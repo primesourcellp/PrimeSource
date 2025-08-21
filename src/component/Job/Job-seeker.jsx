@@ -74,7 +74,7 @@ export default function JobSeekerForm() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-gray-900 flex items-center justify-center p-4 py-25"
+      className="relative min-h-screen overflow-hidden bg-gray-900 flex items-center justify-center p-4 py-25 "
     >
       {/* Parallax background */}
       <motion.div className="absolute inset-0 z-0" style={{ y: yBg }}>

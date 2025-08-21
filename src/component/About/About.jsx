@@ -75,7 +75,7 @@ const CollapsibleContent = ({ title, children }) => {
 
   return (
     <motion.div 
-      className="mb-4"
+      className="mb-4 "
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, margin: "-50px" }}
@@ -122,7 +122,7 @@ const WhatWeDoList = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 ">
       {items.map((item, index) => (
         <motion.div
           key={index}
@@ -144,7 +144,7 @@ const WhatWeDoList = () => {
 
 export default function About() {
   return (
-    <section className="bg-white py-20 px-4 md:px-8 overflow-hidden">
+    <section className="py-20 px-4 md:px-8 overflow-hidden bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen">
       {/* About Us Main Heading */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -208,7 +208,7 @@ export default function About() {
           <motion.img
             src={companyIntroImg}
             alt="PrimeSource Consulting Team Collaboration"
-            className="w-full max-w-lg rounded-2xl shadow-xl border-1 border-[#B8E1DD] object-cover"
+            className="w-full max-w-lg rounded-2xl shadow-xl  object-cover"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
@@ -290,7 +290,7 @@ export default function About() {
           variants={slideInFromLeft}
         >
           <h2 className="text-4xl font-bold text-[#044A42] mb-6 leading-tight">
-            Premium Web & App Development
+            Premium Software Development
           </h2>
           <motion.p 
             className="text-[#062925] text-lg mb-8"
@@ -298,14 +298,19 @@ export default function About() {
           >
             We transform your ideas into high-performance, scalable, and secure digital products. Our development process is designed for clarity, efficiency, and superior quality, ensuring your project is a success from conception to launch. We build premium software that works flawlessly and looks incredible.
           </motion.p>
-          <CollapsibleContent title="Discovery & Strategy">
+          <CollapsibleContent title="Website Development">
             <p className="text-lg text-[#062925]">
-              Every great project starts with a solid plan. We work closely with you to understand your objectives, define project requirements, and create a strategic roadmap that aligns with your budget and timeline.
+              At Primesource, we design and develop websites that go beyond aesthetics — we create digital platforms that connect, engage, and convert. In today’s competitive market, your website is the first impression of your brand, and we make sure it is powerful, user-friendly, and future-ready. Our website development services combine creativity, technology, and strategy to deliver solutions that help businesses establish a strong online presence and achieve measurable results.
             </p>
           </CollapsibleContent>
-          <CollapsibleContent title="Design & Development">
+          <CollapsibleContent title="Web Application Development">
             <p className="text-lg text-[#062925]">
-              Our team creates intuitive UI/UX designs and writes clean, robust code using the latest technologies. Following agile methodologies, we provide regular updates to ensure the final product exceeds your expectations.
+         At Primesource, we create web applications that are robust, scalable, and user-friendly — designed to help businesses succeed in the digital era. From simple tools to complex enterprise platforms, our solutions combine cutting-edge technology with creative problem-solving, ensuring applications that are both functional and visually engaging.
+            </p>
+          </CollapsibleContent>
+          <CollapsibleContent title="Mobile Application Development">
+            <p className="text-lg text-[#062925]">
+         At Primesource, we create web applications that are robust, scalable, and user-friendly — designed to help businesses succeed in the digital era. From simple tools to complex enterprise platforms, our solutions combine cutting-edge technology with creative problem-solving, ensuring applications that are both functional and visually engaging.
             </p>
           </CollapsibleContent>
         </motion.div>

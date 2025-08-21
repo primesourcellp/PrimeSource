@@ -10,6 +10,8 @@ import heroImg from '../../assets/hero.png';
 import meetingImg from '../../assets/one.png';
 import userImg from '../../assets/three.png';
 import teamImg from '../../assets/two.png';
+import Hero from '../../assets/Guy_Animation_Reversed_Edit.gif';
+
 import clientLogo from '../../assets/client_logo_1.png';
 import clientLogo1 from '../../assets/client_logo_2.png';
 import clientLogo2 from '../../assets/client_logo_3.png';
@@ -87,50 +89,62 @@ export default function Home() {
   };
 
   return (
-    <section className="bg-[#F6F6F6] pt-0 pb-20">
-      {/* Hero Section */}
-      <div
-        className="relative w-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
+    <section className=" pt-0 pb-20 bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen">
+  {/* Hero Section */}
+<div
+  className="relative w-full bg-cover bg-center"
+  style={{ backgroundImage: `url(${heroBg})` }}
+>
+  <div className="absolute inset-10 bg-[#F6F6F6] opacity-5 z-0"></div>
+
+  <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-10 pt-52 pb-40 md:py-68 px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    {/* Left Content */}
+    <motion.div
+      className="md:w-1/2 text-center md:text-left"
+      initial={{ y: 50, opacity: 0, scale: 0.95, rotate: -2 }}
+      animate={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
+    >
+      <motion.h1
+        className="text-4xl sm:text-5xl font-extrabold text-[#062925] mb-6 leading-tight"
+        initial={{ y: 40, opacity: 0, scale: 0.9, skewY: 5 }}
+        animate={{ y: 0, opacity: 1, scale: 1, skewY: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
       >
-        <div className="absolute inset-10 bg-[#F6F6F6] opacity-5 z-0"></div>
-        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-10 py-68 px-4 sm:px-6 lg:px-8 relative z-10">
-       
-       
-            <motion.div
-        className="md:w-1/2 text-center md:text-left"
-        initial={{ y: 50, opacity: 0, scale: 0.95, rotate: -2 }}
-        animate={{ y: 0, opacity: 1, scale: 1, rotate: 0 }}
-        transition={{
-          duration: 1.5,
-          ease: "easeOut"
-        }}
+        We turn your career dreams into clickable reality.
+      </motion.h1>
+
+      <motion.p
+        className="text-lg sm:text-xl text-[#044A42] mb-8"
+        initial={{ y: 40, opacity: 0, scale: 0.9, skewX: -5 }}
+        animate={{ y: 0, opacity: 1, scale: 1, skewX: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
       >
-        <motion.h1
-          className="text-5xl font-extrabold text-[#062925] mb-6 leading-tight"
-          initial={{ y: 40, opacity: 0, scale: 0.9, skewY: 5 }}
-          animate={{ y: 0, opacity: 1, scale: 1, skewY: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-        >
-          We turn your career dreams into clickable reality.
-        </motion.h1>
+        Driving Innovation with Expert Development Consulting for Business Success.
+      </motion.p>
+    </motion.div>
 
-        <motion.p
-          className="text-xl text-[#044A42] mb-8"
-          initial={{ y: 40, opacity: 0, scale: 0.9, skewX: -5 }}
-          animate={{ y: 0, opacity: 1, scale: 1, skewX: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
-        >
-          Driving Innovation with Expert Development Consulting for Business Success.
-        </motion.p>
-      </motion.div>
+    {/* Hero Image - show only on mobile */}
+    <motion.div
+      className="md:hidden flex justify-center"
+      initial={{ x: 100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
+    >
+      <img
+        src={Hero}
+        alt="Hero"
+        className="w-full max-w-md h-[350px] sm:h-[400px] object-cover"
+      />
+    </motion.div>
+
+    <JobDriveBanner />
+  </div>
+</div>
 
 
-            {/* <FollowCursorContact /> */}
-          <JobDriveBanner />
-         
-        </div>
-      </div>
+
 
       {/* About Us Section */}
       <div
@@ -239,7 +253,7 @@ export default function Home() {
             viewport={{ once: true }}
             data-aos="fade-right"
           >
-            <h2 className="text-3xl font-bold text-[#044A42] mb-4">Why Primesource Consulting Stands Out in Software Development </h2>
+            <h2 className="text-3xl font-bold text-[#044A42] mb-4">Why Choose us</h2>
             <p className="text-lg text-[#062925] mb-6">
           At Primesource Consulting LLP, we go beyond recruitment — we empower careers and fuel business growth. With a strong presence across India, organizations and professionals alike trust us for our commitment to excellence, integrity, and results-driven hiring solutions.
             </p>

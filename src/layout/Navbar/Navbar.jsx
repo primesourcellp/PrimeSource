@@ -236,7 +236,7 @@ export default function Navbar() {
           
           {/* Services Dropdown */}
           <div className="relative inline-block" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-            <NavLink to="/Services" className={({ isActive }) => `hover:text-[#b8e1dd] ${isActive ? "text-[#b8e1dd] font-bold" : ""}`} style={textColorStyle}>Services ▸</NavLink>
+            <NavLink to="/Services" className={({ isActive }) => `hover:text-[#b8e1dd] ${isActive ? "text-[#b8e1dd] font-bold" : ""}`} style={textColorStyle}>Services</NavLink>
             {servicesOpen && (
               <div className="absolute bg-white shadow-lg rounded-md w-64 text-black">
 

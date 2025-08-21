@@ -18,6 +18,7 @@ import qualityIcon from '../../assets/hero.png';
 import integrityIcon from '../../assets/hero.png';
 import trackRecordIcon from '../../assets/hero.png';
 import supportIcon from '../../assets/hero.png';
+import ServicesSection from '../ServicesCompo/servicecompo'
 
 // ServiceCard component - updated for new design
 const ServiceCard = ({ title, description, image }) => (
@@ -231,45 +232,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-sm">
-          <div className="max-w-9xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl md:text-4xl font-bold text-center text-[#044A42] mb-16"
-            >
-              Our Services
-            </motion.h2>
-
-            <motion.div
-              className="flex flex-wrap justify-center gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  className="w-full sm:w-[45%] lg:w-[30%] xl:w-[28%]"
-                  variants={itemVariants}
-                >
-                  <motion.div
-                    className="h-full"
-                    initial="initial"
-                    whileHover="hover"
-                    custom={directions[index % directions.length]}
-                    variants={hoverVariants}
-                  >
-                    <ServiceCard {...service} />
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        <ServicesSection />
 
         {/* Why Choose Us Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#044A42] bg-opacity-90 backdrop-blur-sm">

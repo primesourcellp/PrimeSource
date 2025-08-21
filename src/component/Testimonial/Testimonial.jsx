@@ -56,7 +56,7 @@ const candidateTestimonials = [
 
 // Star rating component
 const StarRating = ({ rating }) => (
-  <div className="flex justify-center mb-4">
+  <div className="flex justify-center mb-4 ">
     {[...Array(5)].map((_, i) => (
       <motion.svg
         key={i}
@@ -85,7 +85,7 @@ const Slider = ({ testimonials }) => {
   const current = testimonials[testimonialIndex];
 
   return (
-    <div className="relative h-auto flex flex-col items-center justify-center max-w-4xl mx-auto">
+    <div className="relative h-auto flex flex-col items-center justify-center max-w-4xl mx-auto ">
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={current.id}
@@ -167,7 +167,7 @@ export default function Testimonial() {
   const [activeTab, setActiveTab] = useState("clients");
 
   return (
-    <section className="bg-white w-full py-40 md:py-35 relative overflow-hidden">
+    <section className="bg-white w-full py-40 md:py-35 relative overflow-hidden bg-gradient-to-br from-emerald-50 to-cyan-50 min-h-screen">
       <div className="relative w-full text-center px-4 sm:px-6 lg:px-8 z-10">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-[#044A42] mb-4"

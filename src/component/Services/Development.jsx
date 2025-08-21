@@ -116,37 +116,36 @@ const FeatureCard = ({ icon, title, description }) => (
 
 const ServiceCard = ({ icon, title, description, features, image, reverse = false }) => (
   <motion.div 
-    className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 items-center bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-sm border border-white/30 p-1 mb-12`}
+    className={`flex flex-col lg:flex-row items-center gap-12 ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
     variants={item}
     initial="hidden"
     whileInView="show"
     viewport={{ once: true, margin: "-100px" }}
   >
-    <div className="md:w-1/2 p-8">
-      <div className="w-14 h-14 rounded-xl bg-emerald-100/50 text-emerald-700 flex items-center justify-center mb-6">
-        {icon}
+    {/* Image */}
+<div className="lg:w-1/2 w-full flex justify-center">
+  <img 
+    src={image} 
+    alt={title} 
+    className="w-4/5 lg:w-3/4 rounded-2xl shadow-lg"
+  />
+</div>
+
+
+    {/* Content */}
+    <div className="lg:w-1/2 w-full">
+      <div className="flex items-center mb-4">
+        <div className="w-12 h-12 rounded-lg bg-emerald-100/50 text-emerald-700 flex items-center justify-center mr-4">
+          {icon}
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
       </div>
-      <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-      <p className="text-gray-700 mb-6">{description}</p>
-      <ul className="space-y-3">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-start">
-            <svg className="w-5 h-5 text-emerald-600 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span className="text-gray-700">{feature}</span>
-          </li>
+      <p className="text-gray-700 mb-4">{description}</p>
+      <ul className="list-disc list-inside text-gray-700 space-y-2">
+        {features.map((feature, index) => (
+          <li key={index}>{feature}</li>
         ))}
       </ul>
-    </div>
-    <div className="md:w-1/2">
-      <motion.img 
-        src={image} 
-        alt={title} 
-        className="w-full h-72 object-cover rounded-xl"
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.3 }}
-      />
     </div>
   </motion.div>
 );
@@ -216,15 +215,15 @@ export default function WebSolutionsPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Start Your Project
+                Start Your Project Today
               </motion.button>
-              <motion.button 
+              {/* <motion.button 
                 className="bg-white/90 hover:bg-white text-emerald-600 border border-emerald-600 font-medium py-3 px-8 rounded-lg transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 View Our Work
-              </motion.button>
+              </motion.button> */}
             </motion.div>
           </motion.div>
         </div>
@@ -241,28 +240,32 @@ export default function WebSolutionsPage() {
           />
           
           <motion.div 
-            className="space-y-16"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <ServiceCard 
-              icon={<CustomDesignIcon />}
-              title="Website Development"
-              description="Beautiful, high-converting websites designed to showcase your brand and engage your audience."
-              features={['Custom designs', 'Mobile-first approach', 'SEO optimized', 'Fast performance']}
-              image={webDesignIllustration}
+                className="space-y-24"
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-100px" }}
+                >
+
+           <ServiceCard 
+            icon={<AppIcon />}
+            title="Website Development"
+            description="At Primesource, we design and develop websites that go beyond aesthetics — we create digital platforms that connect, engage, and convert. In today’s competitive market, your website is the first impression of your brand, and we make sure it is powerful, user-friendly, and future-ready. Our website development services combine creativity, technology, and strategy to deliver solutions that help businesses establish a strong online presence and achieve measurable results. "
+            features={['Custom designs', 'Mobile-first approach', 'SEO optimized', 'Fast performance','Website Maintenance and Support']}
+            image={webDesignIllustration}
+            reverse={true}  // Image on left, text on right
             />
-            
+
             <ServiceCard 
-              icon={<AppIcon />}
-              title="Web Application Development"
-              description="Custom web applications that solve business challenges and streamline operations."
-              features={['Custom business logic', 'Database integration', 'User authentication', 'API connections']}
-              image={webAppIllustration}
-              reverse={true}
+            icon={<MobileIcon />}
+            title="Web Application Development"
+            description="We follow a structured development process that begins with careful planning to understand your business model, target audience, and objectives. From there, we move to UI and UX design, where we create intuitive layouts that engage users and simplify interaction.
+            tinuous maintenance, upgrades, and technical support to keep your web application running at its best."
+            features={['Custom business logic', 'Database integration', 'User authentication', 'API connections','Cloud Platforms']}
+            image={webAppIllustration}
+            reverse={false} // Image on right, text on left
             />
+
             
             <ServiceCard 
               icon={<MobileIcon />}
@@ -270,6 +273,7 @@ export default function WebSolutionsPage() {
               description="Native and cross-platform mobile apps for iOS and Android that deliver exceptional user experiences."
               features={['iOS & Android development', 'Cross-platform solutions', 'App store optimization', 'Push notifications']}
               image={mobileAppIllustration}
+              reverse={true}
             />
           </motion.div>
         </div>
@@ -277,146 +281,155 @@ export default function WebSolutionsPage() {
       </section>
 
       {/* Website Features */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader 
-            title="Website Development Features" 
-            subtitle="We build websites that perform" 
-            center
-          />
-          
-          <motion.div 
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <FeatureCard 
-              icon={<CustomDesignIcon />}
-              title="Custom Design"
-              description="Tailored to your brand with unique visuals that stand out from competitors."
-            />
-            <FeatureCard 
-              icon={<ResponsiveIcon />}
-              title="Fully Responsive"
-              description="Perfectly adapted for all devices from desktop to mobile."
-            />
-            <FeatureCard 
-              icon={<SEOIcon />}
-              title="SEO Optimized"
-              description="Built with search engine visibility in mind from the start."
-            />
-            <FeatureCard 
-              icon={<PerformanceIcon />}
-              title="Blazing Fast"
-              description="Optimized for speed to keep visitors engaged."
-            />
-            <FeatureCard 
-              icon={<DatabaseIcon />}
-              title="CMS Integration"
-              description="Easy content management with WordPress or other platforms."
-            />
-            <FeatureCard 
-              icon={<SecurityIcon />}
-              title="Secure"
-              description="HTTPS, security headers, and regular updates included."
-            />
-          </motion.div>
-        </div>
-      </section>
+<section className="py-20 px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    {/* Section Header */}
+    <SectionHeader 
+      title="Building Digital Experiences That Inspire" 
+      subtitle="At Primesource, we design and develop websites that go beyond aesthetics — we create digital platforms that connect, engage, and convert."
+      center
+    />
 
-      {/* Web App Features */}
-      <section className="py-20 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <SectionHeader 
-            title="Web Application Capabilities" 
-            subtitle="Powerful solutions for complex business needs" 
-            center
-          />
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              variants={slideIn}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Process Automation</h3>
-              <p className="text-gray-700 mb-6">
-                Streamline operations with custom applications that automate repetitive tasks and reduce errors.
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  "Workflow management systems",
-                  "Inventory and order processing",
-                  "Custom CRM solutions",
-                  "Data collection and reporting"
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i} 
-                    className="flex items-start"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-emerald-100/70 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                    <p className="ml-3 text-gray-700">{item}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-            
-            <motion.div
-              variants={slideIn}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Customer-Facing Applications</h3>
-              <p className="text-gray-700 mb-6">
-                Create powerful tools for your customers that enhance engagement and provide value.
-              </p>
-              
-              <div className="space-y-4">
-                {[
-                  "Member portals and dashboards",
-                  "E-learning platforms",
-                  "Interactive service tools",
-                  "Real-time collaboration"
-                ].map((item, i) => (
-                  <motion.div 
-                    key={i} 
-                    className="flex items-start"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 + 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="w-5 h-5 rounded-full bg-emerald-100/70 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-emerald-700" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    </div>
-                    <p className="ml-3 text-gray-700">{item}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+    <motion.div 
+      className="space-y-12"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+
+      {/* Custom Website Development */}
+      <motion.div variants={item}>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">Custom Website Development</h3>
+        <p className="text-gray-700 mb-4">
+          Every business is unique, and your website should reflect that. At Primesource, we craft custom websites tailored to your brand identity, industry, and customer expectations. Our team focuses on clean design, intuitive navigation, and scalable structures to ensure your site stands out and grows with your business. From concept to launch, we deliver websites that not only look great but also function seamlessly across all devices.
+        </p>
+      </motion.div>
+
+      {/* E-Commerce Development */}
+      <motion.div variants={item}>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">E-Commerce Development</h3>
+        <p className="text-gray-700 mb-4">
+          In the digital age, online shopping has become the backbone of many businesses. We help companies launch and scale e-commerce platforms that deliver seamless buying experiences. Our expertise includes designing secure, responsive, and easy-to-manage online stores with features like product catalogs, payment gateways, inventory management, and customer engagement tools. With Primesource, your e-commerce platform becomes a growth engine for your business.
+        </p>
+      </motion.div>
+
+      {/* Web Applications and Advanced Solutions */}
+      <motion.div variants={item}>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">Web Applications and Advanced Solutions</h3>
+        <p className="text-gray-700 mb-4">
+          For businesses seeking more than a standard website, we offer advanced web development solutions including web applications, portals, and custom integrations. From booking systems and dashboards to interactive tools, Primesource develops web applications that solve real business challenges and enhance efficiency. We focus on scalability, performance, and security to ensure your solutions are built to last.
+        </p>
+      </motion.div>
+
+      {/* Mobile-Responsive and UX Design */}
+      <motion.div variants={item}>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">Mobile-Responsive and User Experience (UX) Design</h3>
+        <p className="text-gray-700 mb-4">
+          With most users accessing websites from mobile devices, responsiveness is no longer optional. Primesource ensures that every website we build is fully optimized for mobile, tablet, and desktop. Beyond responsiveness, we prioritize user experience by designing websites that are easy to navigate, fast-loading, and visually engaging. The result is a website that keeps visitors engaged and encourages them to take action.
+        </p>
+      </motion.div>
+
+      {/* Website Maintenance and Support */}
+      <motion.div variants={item}>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">Website Maintenance and Support</h3>
+        <p className="text-gray-700 mb-4">
+          A great website is not just about launch — it’s about continuous performance. Primesource provides website maintenance and support services to keep your site secure, updated, and optimized. From bug fixes and performance monitoring to content updates and feature enhancements, we ensure your digital presence stays strong and reliable over time.
+        </p>
+      </motion.div>
+
+    </motion.div>
+  </div>
+</section>
+{/* Web Application Development Services */}
+<section className="py-20 px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <SectionHeader 
+      title="Web Application Development Services" 
+      subtitle=" At Primesource, we create web applications that are robust, scalable, and user-friendly —
+        designed to help businesses succeed in the digital era."
+      center
+    />
+
+   
+    <motion.div 
+      className="space-y-12"
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      {/* Why Choose */}
+      <motion.div className="text-left space-y-4" variants={item}>
+        <h3 className="text-2xl font-semibold text-gray-900">Why Choose Primesource for Web Apps?</h3>
+        <p className="text-gray-700">
+          What sets us apart is our ability to design digital experiences that align perfectly with
+          business goals. Every application is custom-built to meet specific requirements, ensuring
+          flexibility and adaptability as your business grows. We focus on delivering secure,
+          future-ready applications while maintaining a seamless user experience with clean design
+          and smooth navigation.
+        </p>
+      </motion.div>
+
+      {/* Process */}
+      <motion.div className="text-left space-y-4" variants={item}>
+        <h3 className="text-2xl font-semibold text-gray-900">Our Web App Development Process</h3>
+        <p className="text-gray-700">
+          We follow a structured development process that begins with careful planning to understand
+          your business model, target audience, and objectives. From there, we move to UI and UX
+          design, where we create intuitive layouts that engage users and simplify interaction.
+        </p>
+        <p className="text-gray-700">
+          Development is carried out using the latest frameworks such as <span className="font-semibold">React, Angular, Vue, Node.js, and Laravel</span>,
+          ensuring speed, reliability, and scalability. Before launch, every application undergoes rigorous
+          testing across multiple devices and browsers to guarantee flawless performance. Once live, we
+          provide continuous maintenance, upgrades, and technical support to keep your web application
+          running at its best.
+        </p>
+      </motion.div>
+
+      {/* Solutions */}
+      <motion.div className="text-left space-y-6" variants={item}>
+        <h3 className="text-2xl font-semibold text-gray-900">Solutions We Deliver</h3>
+        <ul className="grid sm:grid-cols-2 gap-4 text-gray-700">
+          {[
+            "Business Portals – Streamline workflows and improve performance tracking.",
+            "E-Commerce Platforms – Secure, scalable, and optimized for conversions.",
+            "Community Platforms – Connect people with engaging and interactive features.",
+            "SaaS Solutions – Subscription-based applications tailored for niche markets."
+          ].map((solution, i) => (
+            <li key={i} className="flex items-start">
+              <span className="text-emerald-600 mr-2">✔</span> {solution}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* Technology Stack */}
+      <motion.div className="text-left space-y-4" variants={item}>
+        <h3 className="text-2xl font-semibold text-gray-900">Technology Stack We Use</h3>
+        <div className="grid sm:grid-cols-2 gap-4 text-gray-700">
+          <div><span className="font-semibold">Frontend:</span> React.js, Angular, Vue.js</div>
+          <div><span className="font-semibold">Backend:</span> Node.js, Laravel, Django</div>
+          <div><span className="font-semibold">Databases:</span> MySQL, PostgreSQL, MongoDB</div>
+          <div><span className="font-semibold">Cloud:</span> AWS, Azure, Google Cloud</div>
         </div>
-      </section>
+      </motion.div>
+
+      {/* Conclusion */}
+      <motion.div className="text-left space-y-4" variants={item}>
+        <h3 className="text-2xl font-semibold text-gray-900">Our Expertise</h3>
+        <p className="text-gray-700">
+          In a fast-paced digital world, your business deserves a web application that is reliable,
+          scalable, and tailored to your unique needs. At Primesource, we partner with you at every
+          step — from concept to launch and beyond — ensuring that your web app becomes a valuable
+          asset for business growth.
+        </p>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Mobile App Section */}
       <section className="py-20 px-6 lg:px-8 bg-gradient-to-br from-emerald-100/50 to-cyan-100/50 rounded-3xl mx-4 lg:mx-8">
@@ -519,13 +532,13 @@ export default function WebSolutionsPage() {
             >
               Start Your Project
             </motion.button>
-            <motion.button 
+            {/* <motion.button 
               className="bg-transparent hover:bg-white/10 text-white border border-white font-medium py-3 px-8 rounded-lg transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Schedule a Consultation
-            </motion.button>
+            </motion.button> */}
           </motion.div>
           
         </div>
