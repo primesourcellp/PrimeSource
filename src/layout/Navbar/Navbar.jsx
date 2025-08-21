@@ -35,31 +35,41 @@ export default function Navbar() {
   }, []);
 
   // Control body scroll when mobile menu is open
-  useEffect(() => {
-    if (open) {
-      // Save current scroll position
-      setScrollPosition(window.scrollY);
-      // Lock body scroll and position fixed
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      // Restore scroll position
-      document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, scrollPosition);
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
-  }, [open, scrollPosition]);
+// Control body scroll when mobile menu is open
+useEffect(() => {
+  if (open) {
+    // Save scroll position
+    const y = window.scrollY;
+    setScrollPosition(y);
+
+    // Lock scroll
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+  } else {
+    // Unlock scroll
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+
+    // Restore scroll
+    window.scrollTo(0, scrollPosition);
+  }
+
+  // Cleanup on unmount
+  return () => {
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+  };
+}, [open, scrollPosition]);
+
 
   // Close all dropdowns when menu closes
   useEffect(() => {
