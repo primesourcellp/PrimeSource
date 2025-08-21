@@ -14,7 +14,7 @@ export default function Navbar() {
   const [hrOpen, setHrOpen] = useState(false);
   const [payrollOpen, setPayrollOpen] = useState(false);
   const [jobSeekerOpen, setJobSeekerOpen] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [nearFooter, setNearFooter] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -23,6 +23,13 @@ export default function Navbar() {
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Detect if mobile menu is near footer
+      const footer = document.querySelector("footer");
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        setNearFooter(rect.top <= window.innerHeight);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -36,27 +43,13 @@ export default function Navbar() {
   // Control body scroll when mobile menu is open
   useEffect(() => {
     if (open) {
-      // Save current scroll position
-      setScrollPosition(window.scrollY);
-      // Lock body scroll and position fixed
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
     } else {
-      // Restore scroll position
       document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, scrollPosition);
     }
     
     return () => {
       document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
     };
   }, [open]);
 
@@ -79,7 +72,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-      ${open ? "bg-transparent" : scrolled ? "bg-transparent backdrop-blur-md" : "bg-[#062925]"}`}
+      ${open ? "bg-transparent" : scrolled ? "bg-transparent backdrop-blur" : "bg-[#062925]"}`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
         {/* Logo */}
@@ -121,13 +114,14 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden fixed top-0 left-0 w-full h-full z-50 p-6 flex flex-col overflow-y-auto bg-black/30 backdrop-blur-xl"
+              className={`md:hidden fixed top-0 left-0 w-full h-full z-50 p-6 flex flex-col overflow-y-auto transition-colors duration-300
+                ${nearFooter ? "bg-[#062925] text-white" : "bg-white text-black"}`}
             >
-              <div className="flex justify-between items-center mb-8 sticky top-0 bg-transparent pt-4 pb-2 z-10">
+              <div className="flex justify-between items-center mb-8 sticky top-0 bg-inherit pt-4 pb-2 z-10">
                 <NavLink to="/Home" onClick={() => setOpen(false)}>
                   <img src={logo} alt="Logo" className="w-28" />
                 </NavLink>
-                <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-white">
+                <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-current">
                   <motion.svg
                     className="w-6 h-6"
                     fill="none"
@@ -145,12 +139,12 @@ export default function Navbar() {
               </div>
 
               {/* Mobile contact info */}
-              <div className="flex flex-col space-y-4 mb-6">
-                <a href="tel: 8190901250" className="flex items-center gap-2 text-white">
+              <div className="flex flex-col space-y-4 mb-6 transition-colors duration-300">
+                <a href="tel: 8190901250" className="flex items-center gap-2 transition-colors duration-300 text-current">
                   <FaPhoneAlt />
                   <span>+91 8190901250</span>
                 </a>
-                <a href="mailto:connect@primesourcellp.com" className="flex items-center gap-2 text-white">
+                <a href="mailto:connect@primesourcellp.com" className="flex items-center gap-2 transition-colors duration-300 text-current">
                   <FaEnvelope />
                   <span>connect@primesourcellp.com</span>
                 </a>
@@ -161,25 +155,25 @@ export default function Navbar() {
                 <NavLink 
                   to="/Home" 
                   onClick={() => setOpen(false)} 
-                  className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
+                  className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300"
                 >
                   Home
                 </NavLink>
                 <NavLink 
                   to="/About" 
                   onClick={() => setOpen(false)} 
-                  className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
+                  className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300"
                 >
                   About
                 </NavLink>
 
                 {/* Services Section */}
-                <div className="py-3 border-b border-white/20">
+                <div className="py-3 border-b border-gray-300 transition-colors duration-300">
                   {/* Main Services Link */}
                   <NavLink
                     to="/Services"
                     onClick={() => setOpen(false)}
-                    className="flex justify-between items-center w-full text-white text-lg hover:text-[#b8e1dd] transition-colors duration-300"
+                    className="flex justify-between items-center w-full text-current text-lg hover:text-[#3A9188] transition-colors duration-300"
                   >
                     <span>Services</span>
                   </NavLink>
@@ -189,28 +183,28 @@ export default function Navbar() {
                     <NavLink
                       to="/Services/Development"
                       onClick={() => setOpen(false)}
-                      className="block text-white text-md hover:text-[#b8e1dd] transition-colors duration-300"
+                      className="block text-current text-md hover:text-[#3A9188] transition-colors duration-300"
                     >
                       Software Development
                     </NavLink>
                     <NavLink
                       to="/Services/Digital_Marketing"
                       onClick={() => setOpen(false)}
-                      className="block text-white text-md hover:text-[#b8e1dd] transition-colors duration-300"
+                      className="block text-current text-md hover:text-[#3A9188] transition-colors duration-300"
                     >
                       Digital Marketing
                     </NavLink>
                     <NavLink
                       to="/Services/HR_Consulting"
                       onClick={() => setOpen(false)}
-                      className="block text-white text-md hover:text-[#b8e1dd] transition-colors duration-300"
+                      className="block text-current text-md hover:text-[#3A9188] transition-colors duration-300"
                     >
                       HR Consulting
                     </NavLink>
                     <NavLink
                       to="/Services/PayRoll"
                       onClick={() => setOpen(false)}
-                      className="block text-white text-md hover:text-[#b8e1dd] transition-colors duration-300"
+                      className="block text-current text-md hover:text-[#3A9188] transition-colors duration-300"
                     >
                       Payroll Service
                     </NavLink>
@@ -218,10 +212,10 @@ export default function Navbar() {
                 </div>
 
                 {/* Other mobile links */}
-                <NavLink to="/Job-seeker" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Job Seeker</NavLink>
-                <NavLink to="/Career" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Career</NavLink>
-                <NavLink to="/Testimonial" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Testimonial</NavLink>
-                <NavLink to="/Contact" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Contact</NavLink>
+                <NavLink to="/Job-seeker" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300">Job Seeker</NavLink>
+                <NavLink to="/Career" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300">Career</NavLink>
+                <NavLink to="/Testimonial" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300">Testimonial</NavLink>
+                <NavLink to="/Contact" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-gray-300 text-current hover:text-[#3A9188] transition-colors duration-300">Contact</NavLink>
               </div>
             </motion.div>
           )}
