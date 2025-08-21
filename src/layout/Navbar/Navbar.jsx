@@ -14,6 +14,7 @@ export default function Navbar() {
   const [hrOpen, setHrOpen] = useState(false);
   const [payrollOpen, setPayrollOpen] = useState(false);
   const [jobSeekerOpen, setJobSeekerOpen] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -35,13 +36,27 @@ export default function Navbar() {
   // Control body scroll when mobile menu is open
   useEffect(() => {
     if (open) {
+      // Save current scroll position
+      setScrollPosition(window.scrollY);
+      // Lock body scroll and position fixed
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = '100%';
     } else {
+      // Restore scroll position
       document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollPosition);
     }
     
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     };
   }, [open]);
 
@@ -146,20 +161,20 @@ export default function Navbar() {
                 <NavLink 
                   to="/Home" 
                   onClick={() => setOpen(false)} 
-                  className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
+                  className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
                 >
                   Home
                 </NavLink>
                 <NavLink 
                   to="/About" 
                   onClick={() => setOpen(false)} 
-                  className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
+                  className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300"
                 >
                   About
                 </NavLink>
 
                 {/* Services Section */}
-                <div className="py-3  border-white/20">
+                <div className="py-3 border-b border-white/20">
                   {/* Main Services Link */}
                   <NavLink
                     to="/Services"
@@ -203,10 +218,10 @@ export default function Navbar() {
                 </div>
 
                 {/* Other mobile links */}
-                <NavLink to="/Job-seeker" onClick={() => setOpen(false)} className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Job Seeker</NavLink>
-                <NavLink to="/Career" onClick={() => setOpen(false)} className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Career</NavLink>
-                <NavLink to="/Testimonial" onClick={() => setOpen(false)} className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Testimonial</NavLink>
-                <NavLink to="/Contact" onClick={() => setOpen(false)} className="block py-3 text-lg  border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Contact</NavLink>
+                <NavLink to="/Job-seeker" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Job Seeker</NavLink>
+                <NavLink to="/Career" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Career</NavLink>
+                <NavLink to="/Testimonial" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Testimonial</NavLink>
+                <NavLink to="/Contact" onClick={() => setOpen(false)} className="block py-3 text-lg border-b border-white/20 text-white hover:text-[#b8e1dd] transition-colors duration-300">Contact</NavLink>
               </div>
             </motion.div>
           )}
