@@ -22,7 +22,7 @@ import JobDriveBanner from '../MovingDots/dot';
 import FollowCursorContact from '../Animations/Smoke';
 import { Link } from "react-router-dom";
 import ServicesSection from '../ServicesCompo/servicecompo'
-
+// import WalkingAnimation from "../man";
 // Main Home component
 export default function Home() {
   const logosContainerRef = useRef(null);
@@ -124,22 +124,22 @@ export default function Home() {
         Driving Innovation with Expert Development Consulting for Business Success.
       </motion.p>
     </motion.div>
+{/* Hero Image - marquee effect on mobile */}
+<motion.div
+  className="md:hidden flex overflow-hidden w-full"
+>
+  <motion.img
+    src={Hero}
+    alt="Hero"
+    className="w-full max-w-md h-[350px] sm:h-[400px] object-cover"
+    animate={{ x: ["100%", "-100%"] }}   // move from right to left
+    transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+  />
+</motion.div>
 
-    {/* Hero Image - show only on mobile */}
-    <motion.div
-      className="md:hidden flex justify-center"
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 1.5, ease: "easeOut", delay: 0.6 }}
-    >
-      <img
-        src={Hero}
-        alt="Hero"
-        className="w-full max-w-md h-[350px] sm:h-[400px] object-cover"
-      />
-    </motion.div>
 
     <JobDriveBanner />
+    {/* <WalkingAnimation/> */}
   </div>
 </div>
 
@@ -324,8 +324,9 @@ export default function Home() {
      {/* Our Services Section */}
 <ServicesSection />
 
+
       {/* Client Logos Marquee Section */}
-      <div className="w-full my-20 py-12 bg-white rounded-2xl shadow-lg overflow-hidden px-4 sm:px-6 lg:px-8">
+      <div className="w-full my-20 py-12 bg-white rounded-2xl shadow-lg overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-50 to-cyan-50">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

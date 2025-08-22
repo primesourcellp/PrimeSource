@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom"; 
 import logo from "../../assets/logo.png";
-import logoWhite from "../../assets/logo.png"; // Import a separate white logo
+import logoWhite from "../../assets/logo.png"; // ✅ Make sure you have a real white logo file
 import { motion, AnimatePresence } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
@@ -15,7 +15,9 @@ export default function Navbar() {
   const [hrOpen, setHrOpen] = useState(false);
   const [payrollOpen, setPayrollOpen] = useState(false);
   const [jobSeekerOpen, setJobSeekerOpen] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // ✅ useRef instead of state for scroll position
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -25,7 +27,6 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -34,32 +35,29 @@ export default function Navbar() {
     };
   }, []);
 
-  // Control body scroll when mobile menu is open
+  // ✅ Fix scroll lock when menu opens
   useEffect(() => {
     if (open) {
-      // Save current scroll position
-      setScrollPosition(window.scrollY);
-      // Lock body scroll and position fixed
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.width = '100%';
+      scrollPositionRef.current = window.scrollY; // save position instantly
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = "100%";
     } else {
-      // Restore scroll position
-      document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, scrollPosition);
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollPositionRef.current); // restore correctly
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     };
-  }, [open, scrollPosition]);
+  }, [open]);
 
   // Close all dropdowns when menu closes
   useEffect(() => {
@@ -83,14 +81,14 @@ export default function Navbar() {
       ${open ? "bg-transparent" : scrolled ? "bg-transparent backdrop-blur-md" : "bg-[#062925]"}`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
-        {/* Main Logo (visible always) */}
+        {/* Main Logo */}
         <NavLink to="/Home" className="flex items-center gap-2" style={textColorStyle}>
           <img src={logo} alt="PrimeSource Logo" className="w-30 mb-0" />
         </NavLink>
 
         {/* Desktop contact */}
         <div className="hidden md:flex items-center space-x-15 text-sm" style={textColorStyle}>
-          <a href="tel: 8190901250" className="flex items-center gap-1 hover:underline">
+          <a href="tel:8190901250" className="flex items-center gap-1 hover:underline">
             <FaPhoneAlt />
             <span>+91 8190901250</span>
           </a>
@@ -105,7 +103,7 @@ export default function Navbar() {
           <button
             onClick={() => setOpen(true)}
             aria-label="Toggle navigation"
-            className="md:hidden block focus:outline-none z-60"
+            className="md:hidden block focus:outline-none z-50"
             style={textColorStyle}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -118,16 +116,17 @@ export default function Navbar() {
         <AnimatePresence>
           {open && (
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden fixed top-0 left-0 w-full h-full z-50 flex flex-col bg-black/30 backdrop-blur-xl"
-            >
+  initial={{ x: "-100%" }}
+  animate={{ x: 0 }}
+  exit={{ x: "-100%" }}
+  transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+  className="md:hidden fixed top-0 left-0 w-full h-full z-50 flex flex-col bg-[#062925] text-white overflow-y-auto"
+>
+
               <div className="flex justify-between items-center p-6 sticky top-0 bg-transparent z-10">
-                {/* Separate White Logo for Mobile Sidebar */}
+                {/* ✅ Use real white logo */}
                 <NavLink to="/Home" onClick={() => setOpen(false)}>
-                  <img src={logoWhite || logo} alt="PrimeSource Logo" className="w-28" />
+                  <img src={logoWhite} alt="PrimeSource Logo" className="w-28" />
                 </NavLink>
                 <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-white">
                   <motion.svg
@@ -145,7 +144,6 @@ export default function Navbar() {
                   </motion.svg>
                 </button>
               </div>
-
               {/* Mobile contact info */}
               <div className="flex flex-col space-y-4 mb-6 px-6">
                 <a href="tel: 8190901250" className="flex items-center gap-2 text-white">

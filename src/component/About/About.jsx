@@ -310,7 +310,7 @@ export default function About() {
           </CollapsibleContent>
           <CollapsibleContent title="Mobile Application Development">
             <p className="text-lg text-[#062925]">
-         At Primesource, we create web applications that are robust, scalable, and user-friendly — designed to help businesses succeed in the digital era. From simple tools to complex enterprise platforms, our solutions combine cutting-edge technology with creative problem-solving, ensuring applications that are both functional and visually engaging.
+         At Primesource, we specialize in building powerful mobile applications for Android and iOS platforms that deliver functionality, performance, and exceptional user experience. In today’s mobile-first world, apps are more than just tools — they are gateways that connect businesses with customers, enhance engagement, and drive growth. Our mobile app development services are designed to help organizations bring their ideas to life with innovative, secure, and scalable solutions.
             </p>
           </CollapsibleContent>
         </motion.div>

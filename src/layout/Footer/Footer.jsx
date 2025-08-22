@@ -106,14 +106,14 @@ export default function Footer() {
             {/* Software Development Services */}
             <div className="mb-4">
               <Link to="/Services/Development" className="font-semibold text-[#B8E1DD] text-sm mb-2">Software Development</Link>
-              <ul className="space-y-2 pl-2">
+              <ul className="space-y-3 pl-2">
                 <li>
-                  <Link to="/Services/Web_Development" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-3">
+                  <Link to="/Services/Web_Development" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-2">
                     Website Development
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Services/Development" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-1">
+                  <Link to="/Services/Development" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-0">
                     Web Application
                   </Link>
                 </li>
@@ -135,7 +135,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/Services/Digital_Marketing/Content" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-1">
+                  <Link to="/Services/Digital_Marketing/Content" className="text-xs hover:text-[#3A9188] transition-colors duration-300 block py-0">
                     Content Writing
                   </Link>
                 </li>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import bgImage from "../../assets/IMG_2189[1].jpg"; // Replace with your actual image path
 import FollowCursorContact from "../Animations/FollowCursorContact "
+import { FaWhatsapp, FaFacebookF, FaInstagram, FaLinkedinIn, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
 export default function Contact() {
   const mapSrc =
@@ -140,6 +141,8 @@ export default function Contact() {
           
 
           {/* Right Column: Contact Details */}
+         
+          {/* Right Column: Contact Details */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -149,24 +152,82 @@ export default function Contact() {
             <h3 className="text-2xl font-bold text-[#044A42] mb-6">
               CONTACT DETAILS
             </h3>
-            <div className="space-y-6">
-              <div>
-                <p className="text-lg font-semibold text-[#3A9188]">Email</p>
-                <p className="text-gray-700">connect@primesourcellp.com</p>
+
+            {/* Wrapper: left icons + right text */}
+            <div className="grid grid-cols-[50px_1fr] gap-6 items-start">
+              
+              {/* Email */}
+              <div className="flex justify-center">
+                <FaEnvelope className="text-[#3A9188] text-xl" />
               </div>
-              <div>
-                <p className="text-lg font-semibold text-[#3A9188]">Mobile</p>
-                <p className="text-gray-700">(+91)  8190901250 </p>
+              <p className="text-gray-700 hover:text-[#3A9188]  transition">connect@primesourcellp.com</p>
+
+              {/* Phone */}
+              <div className="flex justify-center">
+                <FaPhoneAlt className="text-[#3A9188] text-xl" />
               </div>
-              <div>
-                <p className="text-lg font-semibold text-[#3A9188]">
-                  Primesource Office
-                </p>
-                <p className="text-gray-700">
-                  10/91/K6, Nehru Nager, Surandai Road, <br/>Pavoorchatram,
-                  <br /> Tenkasi District - 627806.
-                </p>
+              <p className="text-gray-700 hover:text-[#3A9188]  transition">(+91) 8190901250</p>
+
+              {/* WhatsApp */}
+              <div className="flex justify-center">
+                <FaWhatsapp className="text-[#3A9188]  text-xl" />
               </div>
+              <a
+                href="https://wa.me/918190901250"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-[#3A9188]  transition"
+              >
+                Chat on WhatsApp
+              </a>
+
+              {/* Facebook */}
+              <div className="flex justify-center">
+                <FaFacebookF className="text-[#3A9188]  text-xl" />
+              </div>
+              <a
+                href="https://www.facebook.com/share/1aAzHJ9v5f/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-[#3A9188]  transition"
+              >
+                Facebook
+              </a>
+
+              {/* Instagram */}
+              <div className="flex justify-center">
+                <FaInstagram className="text-[#3A9188]  text-xl" />
+              </div>
+              <a
+                href="https://www.instagram.com/primesource_consulting_llp?utm_source=ig_web_button_share_sheet&igsh=M3cxczAwaGFlN29z"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-[#3A9188]  transition"
+              >
+                Instagram
+              </a>
+
+              {/* LinkedIn */}
+              <div className="flex justify-center">
+                <FaLinkedinIn className="text-[#3A9188]  text-xl" />
+              </div>
+              <a
+                href="https://www.linkedin.com/company/primesourceconsulting/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-[#3A9188]  transition"
+              >
+                LinkedIn
+              </a>
+
+              {/* Address */}
+              <div className="flex justify-center">
+                <span className="text-[#3A9188] font-bold">📍</span>
+              </div>
+              <p className="text-gray-700">
+                10/91/K6, Nehru Nager, Surandai Road, <br />
+                Pavoorchatram, <br /> Tenkasi District - 627806.
+              </p>
             </div>
           </motion.div>
           <FollowCursorContact/>
